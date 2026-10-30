@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Storyboard · Youssef Kallel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio de Youssef Kallel, learning designer : modules e-learning interactifs et outils de conception.">
+<link rel="alternate" hreflang="fr" href="storyboard.html"><link rel="alternate" hreflang="en" href="storyboard-en.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single editorial column with a wide gallery band per case study; sections read like a course outline */
+:root{
+  --paper:#f6f7f9;--card:#ffffff;--ink:#121821;--muted:#566170;--line:#dde2e8;
+  --accent:#0d6e6e;--accent-ink:#ffffff;--accent-soft:#dcefec;--spark:#e9a23b;--spark-soft:#fbecd2;--ok:#1e7f55;--ko:#b6461b;
+  --display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --body:'Atkinson Hyperlegible',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0f1418;--card:#161d23;--ink:#e7ecf1;--muted:#9ba7b3;--line:#26313a;--accent:#47b9ab;--accent-ink:#06211e;--accent-soft:#143634;--spark:#f0b552;--spark-soft:#3a2d17;--ok:#5ccf98;--ko:#f08a63;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0f1418;--card:#161d23;--ink:#e7ecf1;--muted:#9ba7b3;--line:#26313a;--accent:#47b9ab;--accent-ink:#06211e;--accent-soft:#143634;--spark:#f0b552;--spark-soft:#3a2d17;--ok:#5ccf98;--ko:#f08a63;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.todo{background:var(--spark-soft);outline:1.5px dashed var(--spark);outline-offset:1px;border-radius:4px;padding:0 4px;font-style:normal}
+.draft{background:var(--spark-soft);color:var(--ink);font-size:14px;border-bottom:1px solid var(--line)}
+.draft .wrap{padding-block:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.02em}
+.logo span{color:var(--accent)}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0 0 0 auto;padding:0;flex-wrap:wrap;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 15px var(--body);text-decoration:none;padding:11px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn svg{width:17px;height:17px}
+:focus-visible{outline:2.5px solid var(--spark);outline-offset:3px}
+/* hero */
+.hero{padding-block:72px 64px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,72px);font-weight:800;margin:14px 0 20px}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.16em;background:var(--spark);opacity:.55;z-index:-1;border-radius:3px}
+.lead{font-size:19px;color:var(--muted);max-width:56ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+/* micro quiz */
+.micro{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 24px 50px -28px rgba(10,40,45,.35);position:relative}
+.micro-tag{position:absolute;top:-13px;left:22px;background:var(--spark);color:#2a1b02;font:600 12px var(--mono);padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+.micro h3{font-size:21px;margin:6px 0 16px;line-height:1.25}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{text-align:left;font:inherit;font-size:16px;background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{font:600 13px var(--mono);color:var(--muted);padding-top:2px}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
+.opt.bad{border-color:var(--ko);background:color-mix(in srgb,var(--ko) 9%,var(--card))}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;font-size:15px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;color:var(--ink)}
+.fb strong{display:block;font-family:var(--display);font-size:17px}
+.micro-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font:13px var(--mono);color:var(--muted);gap:8px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;color:var(--accent);font:600 13px var(--mono);cursor:pointer;padding:0;text-decoration:underline}
+/* sections */
+section.block{padding-block:72px;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:end;margin-bottom:40px}
+.sec-head h2{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin-top:10px}
+.sec-head p{color:var(--muted)}
+/* case study */
+.case{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.gallery{display:grid;grid-template-columns:2fr 1fr;gap:10px;padding:10px;background:#141a1d}
+.gallery img{width:100%;height:100%;object-fit:cover;object-position:left top;border-radius:12px;display:block;aspect-ratio:16/10;max-width:100%}
+.gallery .side{display:grid;grid-template-rows:1fr 1fr;gap:10px;min-width:0}
+.gallery .side img{aspect-ratio:auto}
+.case-body{padding:32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px}
+.case-body h3{font-size:30px;font-weight:800;margin:8px 0 12px}
+.meta{position:sticky;top:90px;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:15px;align-self:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.meta dt{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:3px}
+.meta dd{margin:0}
+.case h4{font-family:var(--display);font-size:18px;margin:24px 0 8px}
+.objs{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.objs li{display:flex;gap:10px;align-items:baseline}
+.verb{font:600 12px var(--mono);background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:6px;white-space:nowrap}
+.choices{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.case .cta{margin-top:26px}
+.next-card{margin-top:20px;border:2px dashed var(--line);border-radius:20px;padding:24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;color:var(--muted)}
+.next-card strong{color:var(--ink);font-family:var(--display);font-size:19px}
+.next-card .grow{flex:1;min-width:220px}
+.fv{margin-top:56px}
+.fv-head{display:flex;justify-content:space-between;align-items:end;gap:16px 32px;flex-wrap:wrap;margin-bottom:22px}
+.fv-head h3{font-size:clamp(24px,3vw,32px);font-weight:800;margin-top:8px}
+.fv-head p{color:var(--muted);max-width:52ch;font-size:15.5px}
+.fv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.fv-col{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0}
+.fv-col h4{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:0 0 12px}
+.fv-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.fv-col li{border-top:1px solid var(--line);padding-top:12px}
+.fv-col li:first-child{border-top:0;padding-top:0}
+.fv-col strong{display:block;font-family:var(--display);font-size:16.5px;line-height:1.25;margin-bottom:4px}
+.fv-col p{font-size:14.5px;color:var(--muted)}
+.fv-col .chip{display:inline-block;margin-top:8px}
+@media (max-width:900px){.fv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.fv-grid{grid-template-columns:minmax(0,1fr)}}
+/* apps */
+.apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.app{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.app.feature{grid-column:span 2;grid-row:span 2}
+.shot{aspect-ratio:16/10;background:#141a1d;overflow:hidden;max-width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.shot.empty{background:var(--paper);display:grid;place-items:center;border-bottom:1px solid var(--line);color:var(--muted);font:14px var(--mono);text-align:center;padding:16px}
+.app-b{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.app h3{font-size:24px;font-weight:800}
+.app .prob{color:var(--muted)}
+.feats{margin:4px 0 0;padding-left:20px;font-size:15.5px;columns:2;column-gap:28px}
+.feats li{break-inside:avoid;margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted);background:var(--paper)}
+.ai-note{font-size:13.5px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+.ai-note b{color:var(--ink)}
+.app .cta{margin-top:6px}
+.app .btn{padding:9px 15px;font-size:14px}
+/* process */
+.addie{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card)}
+.step{padding:24px 20px;border-right:1px solid var(--line);position:relative;min-width:0}
+.step:last-child{border-right:0}
+.step .n{font:600 13px var(--mono);color:var(--accent)}
+.step .letter{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;color:var(--spark);margin:8px 0 6px}
+.step h3{font-size:20px;margin-bottom:8px}
+.step p{font-size:15px;color:var(--muted)}
+.step .out{margin-top:12px;font:12.5px var(--mono);color:var(--ink);background:var(--paper);border-radius:8px;padding:8px 10px;line-height:1.45}
+/* path */
+.path{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 26px 26px}
+.timeline li::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--card);border:3px solid var(--accent)}
+.timeline li.now::before{background:var(--spark);border-color:var(--spark)}
+.timeline .k{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.timeline h3{font-size:20px;margin:4px 0 4px}
+.timeline p{font-size:15.5px;color:var(--muted)}
+.skills{display:flex;flex-direction:column;gap:22px}
+.skills h3{font-size:18px;margin-bottom:10px}
+.skills .chip{font-size:13px;padding:5px 12px;color:var(--ink)}
+.story{font-size:18px;margin-bottom:18px}
+/* contact */
+.contact{background:var(--accent);color:var(--accent-ink);border-radius:28px;padding:48px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:center}
+.contact h2{font-size:clamp(30px,4vw,46px);font-weight:800}
+.contact p{opacity:.85;margin-top:10px}
+.clist{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--accent-ink) 10%,transparent);border-radius:14px;padding:12px 16px;font-size:16px;min-width:0}
+.crow span,.crow a{min-width:0;overflow-wrap:anywhere}
+.crow .lab{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;opacity:.75;width:76px;flex-shrink:0}
+.contact .todo{background:var(--spark);color:#2a1b02;outline-color:var(--accent-ink)}
+footer{padding-block:32px 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){
+  .hero .wrap,.sec-head,.case-body,.path,.contact{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:44px}
+  .apps{grid-template-columns:minmax(0,1fr)}.app.feature{grid-column:auto;grid-row:auto}.meta{position:static}
+  .addie{grid-template-columns:minmax(0,1fr)}.step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
+  .gallery{grid-template-columns:minmax(0,1fr)}.gallery .side{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .feats{columns:1}.contact{padding:28px}.case-body{padding:22px}
+  .nav ul{margin-left:0;width:100%;gap:16px;font-size:14px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.nav .wrap{gap:6px;padding-block:10px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+.lang{font:600 13px var(--mono);border:1.5px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink)!important}
+.lang:hover{border-color:var(--accent)}
+/* multi-page: each section is the page's main content */
+main>.block:first-child{border-top:0}
+.sec-head h1{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin-top:10px}
+.contact h1{font-size:clamp(30px,4vw,46px);font-weight:800}
+.nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+</style>
+
+<link rel="stylesheet" href="site.css">
+<style>
+/* storyboard page */
+.sb-head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:28px}
+.sb-head h1{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin-top:10px}
+.sb-head p{color:var(--muted)}
+.sb-top{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;margin-top:36px}
+.sb-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;min-width:0}
+.sb-box h2{font-family:var(--display);font-size:20px;margin:0 0 14px}
+.sb-box dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:15px}
+.sb-box dt{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:3px}
+.sb-box dd{margin:0}
+.sb-flow{margin-top:20px}
+.flow{display:grid;grid-template-columns:auto 1fr;gap:12px 16px;align-items:center}
+.flow .sc{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow li{display:flex;align-items:center;gap:6px}
+.flow li a{font-weight:700;font-size:14px;text-decoration:none;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:6px 12px;transition:border-color .2s}
+.flow li a:hover{border-color:var(--accent)}
+.flow li+li::before{content:"→";color:var(--muted)}
+.flow-end{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;grid-column:2}
+.flow-end span{font-size:13.5px;border-radius:999px;padding:4px 12px;border:1.5px dashed var(--line);color:var(--muted)}
+.sb-screens{margin-top:64px}
+.sb-screens>h2{font-family:var(--display);font-size:clamp(26px,3vw,34px);font-weight:800;margin:0 0 6px}
+.sb-screens>p{color:var(--muted);margin-bottom:28px;font-size:15px}
+.shot-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px;align-items:start;padding:28px 0;border-top:1px solid var(--line)}
+.shot-row .side{position:sticky;top:90px}
+.sb-n{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.sb-n b{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;color:var(--spark)}
+.sb-n h3{font-size:22px;font-weight:800}
+.sb-n span{font:600 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.sb-kind{display:inline-block;font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:3px 10px;margin-bottom:12px}
+.spec{display:grid;grid-template-columns:150px 1fr;margin:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);font-size:15px}
+.spec dt,.spec dd{padding:12px 16px;border-top:1px solid var(--line);margin:0}
+.spec dt:first-of-type,.spec dd:first-of-type{border-top:0}
+.spec dt{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--paper)}
+.spec dd code{font:12.5px var(--mono);background:var(--paper);border-radius:5px;padding:1px 5px}
+.spec dd.note{color:var(--muted);font-style:italic}
+/* wireframes: real text, schematic layout, scale with their own width */
+.wf{container-type:inline-size;position:relative;aspect-ratio:16/9;background:#f4f7f6;color:#17262b;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px -28px rgba(0,0,0,.6)}
+.wf.dark{background:#0f2f33;color:#e8eef0}
+.wf-pad{position:absolute;inset:0;padding:6cqw 7cqw;display:flex;flex-direction:column;align-items:flex-start;gap:1.6cqw}
+.wf-pad.c{align-items:center;text-align:center}
+.wf p{margin:0}
+.wf-over{font:600 2.3cqw/1 var(--mono);letter-spacing:.06em;color:#f0b552}
+.wf-over.t{color:#0d6e6e}
+.wf-h{font-family:var(--display);font-weight:800;font-size:5.2cqw;line-height:1.08;max-width:62%}
+.wf-h.sm{font-size:3.7cqw;max-width:100%}
+.wf-s{font-size:2.6cqw;opacity:.8}
+.wf-input{display:inline-block;font-size:2.4cqw;background:#fff;color:#7a878c;border-radius:1cqw;padding:1.3cqw 2cqw;width:34%;border:1px solid #cdd8d8}
+.wf-input.wide{width:52%;color:#0d6e6e;font-weight:700}
+.wf-btn{display:inline-block;font-weight:700;font-size:2.4cqw;background:#0d6e6e;color:#fff;border-radius:99px;padding:1.2cqw 3cqw;margin-top:auto}
+.wf-btn.y{background:#f0b552;color:#2a1b02}
+.wf-btn.off{background:#c7d2d2;color:#fff}
+.wf-btn.r{align-self:flex-end}
+.wf-disc{position:absolute;right:-8cqw;top:-14cqw;width:52cqw;height:52cqw;border-radius:50%;background:#135158}
+.wf-dot{position:absolute;right:7cqw;bottom:8cqw;width:13cqw;height:13cqw;border-radius:50%;background:#f0b552}
+.wf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;width:100%;margin-top:1cqw}
+.wf-cards span{background:#fff;border:1px solid #cdd8d8;border-radius:1.4cqw;height:15cqw;display:grid;place-items:center;font-weight:700;font-size:2.4cqw;text-align:center}
+.wf-cards .on{border:2px solid #f0b552}
+.wf-layer{position:absolute;right:4cqw;top:22cqw;width:40cqw;background:#fff;border-radius:1.6cqw;padding:2.4cqw;font-size:2.1cqw;line-height:1.35;box-shadow:0 2cqw 5cqw rgba(0,0,0,.25);display:flex;flex-direction:column;gap:1.2cqw}
+.wf-layer b{color:#0d6e6e;font-size:2.4cqw}
+.wf-layer .wf-btn{margin-top:0;align-self:flex-end;font-size:2cqw}
+.wf-opts,.wf-ord{display:flex;flex-direction:column;gap:1.3cqw;width:100%;margin:0;padding:0;list-style:none;counter-reset:o}
+.wf-opts span,.wf-ord li{background:#fff;border:1px solid #cdd8d8;border-radius:1.2cqw;padding:1.3cqw 2cqw;font-size:2.4cqw}
+.wf-ord li{counter-increment:o;display:flex;gap:1.6cqw}
+.wf-ord li::before{content:counter(o);font-weight:800;color:#0d6e6e}
+.wf .ok{border:2px solid #2f9e6e!important;background:#e8f6ef!important;color:#17262b}
+.wf .ko{border:2px solid #d0643f!important;background:#fbece6!important}
+.wf-tf{display:flex;gap:2.4cqw;margin-top:2cqw}
+.wf-tf span{background:#fff;border:1px solid #cdd8d8;border-radius:1.2cqw;padding:2cqw 7cqw;font-weight:700;font-size:2.8cqw}
+.wf-dd{display:grid;grid-template-columns:1fr 1fr;gap:4cqw;width:100%}
+.wf-dd div{display:flex;flex-direction:column;gap:1.3cqw}
+.wf-dd span{background:#fff;border:1px solid #cdd8d8;border-radius:1.2cqw;padding:1.2cqw 1.8cqw;font-size:2.2cqw}
+.wf-dd div:first-child span{border-style:dashed}
+.wf-score{display:grid;place-items:center;width:20cqw;height:20cqw;border-radius:50%;background:#0d6e6e;color:#fff;font-family:var(--display);font-weight:800;font-size:4.4cqw}
+.wf-split{display:flex;gap:2cqw;margin-top:auto}
+.wf-split span{border-radius:99px;padding:1.2cqw 2.6cqw;font-size:2.2cqw;font-weight:700}
+@media (max-width:900px){.sb-head,.sb-top,.shot-row{grid-template-columns:minmax(0,1fr)}.shot-row .side{position:static}.spec{grid-template-columns:minmax(0,1fr)}.spec dd{border-top:0;padding-top:2px}.flow{grid-template-columns:minmax(0,1fr)}.flow-end{grid-column:auto}}
+</style>
+</head><body>
+<div class="draft" id="draft"><div class="wrap"><strong>Version de travail.</strong> <span>Les éléments <span class="todo">surlignés</span> sont à compléter avant la mise en ligne.</span></div></div>
+
+<nav class="nav" aria-label="Navigation principale"><div class="wrap">
+  <a class="logo" href="index.html">Youssef Kallel<span>.</span></a>
+  <ul><li><a href="projets.html" aria-current="page">Projets</a></li><li><a href="applications.html">Applications</a></li><li><a href="demarche.html">Démarche</a></li><li><a href="parcours.html">Parcours</a></li><li><a href="contact.html">Contact</a></li><li><a class="lang" href="storyboard-en.html" hreflang="en" lang="en" aria-label="English version">EN</a></li></ul>
+</div></nav>
+
+<main>
+<section class="block" id="storyboard"><div class="wrap">
+  <div class="sb-head">
+    <div><div class="eyebrow">Storyboard · Étude de cas</div><h1>Le storyboard du module</h1></div>
+    <p>Le document de conception de « Les bons réflexes de la sécurité numérique », écran par écran : ce que voit l'apprenant, ce qu'il fait, ce que le module lui répond.</p>
+  </div>
+  <div class="cta"><a class="btn primary" href="module-securite-numerique.html" target="_blank" rel="noopener">Tester le module</a><a class="btn" href="projets.html#securite">← Retour à l'étude de cas</a></div>
+
+  <div class="sb-top">
+    <div class="sb-box"><h2>Fiche de cadrage</h2><dl><dt>Cadre</dt><dd>Stage chez iLab TN, septembre 2026</dd><dt>Public</dt><dd>Salariés tous services, sans prérequis</dd><dt>Durée</dt><dd>10 minutes</dd><dt>Format</dt><dd>Module web 960 × 540, 8 écrans en 2 scènes</dd><dt>Évaluation</dt><dd>5 questions × 10 points, seuil de réussite 80 %</dd><dt>Audio</dt><dd>Sans voix off : tout est lisible à l'écran</dd><dt>Lecteur</dt><dd>Menu, navigation libre, notes, glossaire (3 termes), ressource Cybermalveillance.gouv.fr</dd><dt>Variables</dt><dd>Prenom (texte) · CartesVues (nombre) · Vu1, Vu2, Vu3 (vrai/faux)</dd></dl></div>
+    <div class="sb-box"><h2>Objectifs pédagogiques</h2><ul class="objs"><li><span class="verb">IDENTIFIER</span><span>un message d'hameçonnage à partir d'indices concrets</span></li><li><span class="verb">CHOISIR</span><span>un mot de passe robuste parmi plusieurs propositions</span></li><li><span class="verb">APPLIQUER</span><span>la bonne séquence de réaction face à un e-mail suspect</span></li></ul></div>
+  </div>
+  <div class="sb-box sb-flow"><h2>Parcours de l'apprenant</h2><div class="flow"><span class="sc">Scène 1 · Découverte</span><ol><li><a href="#ecran-1">Bienvenue</a></li><li><a href="#ecran-2">Trois réflexes</a></li></ol><span class="sc">Scène 2 · Évaluation</span><ol><li><a href="#ecran-3">Q1</a></li><li><a href="#ecran-4">Q2</a></li><li><a href="#ecran-5">Q3</a></li><li><a href="#ecran-6">Q4</a></li><li><a href="#ecran-7">Q5</a></li><li><a href="#ecran-8">Résultats</a></li></ol><div class="flow-end"><span>Réussi → Terminer</span><span>Échoué → Recommencer le quiz</span></div></div></div>
+
+  <div class="sb-screens">
+    <h2>Écran par écran</h2>
+    <p>Les maquettes reprennent le texte réel du module, en français.</p>
+    <article class="shot-row" id="ecran-1">
+      <div class="side"><div class="wf dark"><span class="wf-disc"></span><span class="wf-dot"></span>
+    <div class="wf-pad"><p class="wf-over">MODULE 1 · 10 MINUTES</p><p class="wf-h">Les bons réflexes de la sécurité numérique</p>
+    <p class="wf-s">Comment t'appelles-tu ?</p><span class="wf-input">Ton prénom</span><span class="wf-btn y">Commencer</span></div></div></div>
+      <div><div class="sb-n"><b>01</b><div><span>Découverte</span><h3>Bienvenue</h3></div></div>
+        <span class="sb-kind">Écran titre</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Présenter le module et créer l'engagement dès l'accueil.</dd><dt>Texte à l'écran</dt><dd>« MODULE 1 · 10 MINUTES » · titre · « Comment t'appelles-tu ? » · champ « Ton prénom » · bouton « Commencer ».</dd><dt>Interaction</dt><dd>Le prénom saisi est enregistré dans la variable <code>Prenom</code>. Clic sur « Commencer » → écran suivant.</dd><dt>Animations</dt><dd>Fond sombre. Disque décoratif en zoom, pastille jaune en rebond, titre qui entre par la gauche, bouton par le bas.</dd><dt>Navigation</dt><dd>Commencer → écran 2.</dd><dt>Note de conception</dt><dd class="note">Présente l'objectif du module et invite l'apprenant à saisir son prénom.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-2">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-h sm">Bonjour %Prenom% ! Ouvre chaque carte.</p><p class="wf-s">Cartes explorées : %CartesVues% / 3</p>
+    <div class="wf-cards"><span class="on">✓ Mots de passe</span><span>Mises à jour</span><span>Hameçonnage</span></div><span class="wf-btn off r">Suivant</span></div>
+    <div class="wf-layer"><b>Calque · Mots de passe</b>Utilise une phrase de passe longue et unique…<span class="wf-btn">J'ai compris</span></div></div></div>
+      <div><div class="sb-n"><b>02</b><div><span>Découverte</span><h3>Trois réflexes</h3></div></div>
+        <span class="sb-kind">Exploration</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Découvrir les trois réflexes de base avant l'évaluation.</dd><dt>Texte à l'écran</dt><dd>« Bonjour %Prenom% ! Ouvre chaque carte. » · compteur « Cartes explorées : %CartesVues% / 3 » · 3 cartes · bouton « Suivant ».</dd><dt>Interaction</dt><dd>Clic sur une carte → son calque s'ouvre, la carte passe à l'état « ✓ visité » et <code>CartesVues</code> augmente de 1 (une seule fois par carte grâce à <code>Vu1</code> à <code>Vu3</code>). « Suivant » reste désactivé tant que les 3 cartes n'ont pas été ouvertes.</dd><dt>Feedback</dt><dd>Calque <b>Mots de passe</b> : « Utilise une phrase de passe longue et unique pour chaque compte, et active la double authentification dès que possible. »<br>Calque <b>Mises à jour</b> : « Installe rapidement les mises à jour du système et des applications : elles corrigent des failles déjà exploitées. »<br>Calque <b>Hameçonnage</b> : « Méfie-toi des messages urgents qui demandent de cliquer ou de payer. Vérifie l'expéditeur et passe par le site officiel. »<br>Bouton « J'ai compris » pour fermer.</dd><dt>Animations</dt><dd>Les cartes entrent par le bas en décalé (0,2 s · 0,4 s · 0,6 s), panneau du calque en zoom.</dd><dt>Navigation</dt><dd>Suivant (après 3/3) → scène Évaluation.</dd><dt>Note de conception</dt><dd class="note">Interaction d'exploration : l'apprenant doit ouvrir les trois cartes pour débloquer la suite.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-3">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-over t">QUESTION 1 SUR 5</p><p class="wf-h sm">Quel mot de passe est le plus solide ?</p>
+    <div class="wf-opts"><span>○ Azerty123</span><span>○ MonChat2024!</span><span class="ok">● lampe-orange-vélo-marée-42</span></div><span class="wf-btn r">Valider</span></div></div></div>
+      <div><div class="sb-n"><b>03</b><div><span>Évaluation</span><h3>Mot de passe solide</h3></div></div>
+        <span class="sb-kind">Choix unique · 10 pts · 1 essai</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Objectif « CHOISIR » : reconnaître un mot de passe robuste.</dd><dt>Texte à l'écran</dt><dd>« Quel mot de passe est le plus solide ? » · Azerty123 · MonChat2024! · <b>lampe-orange-vélo-marée-42</b> (bonne réponse).</dd><dt>Interaction</dt><dd>Sélection d'une réponse puis « Valider ».</dd><dt>Feedback</dt><dd>Correct : « Exact : la longueur fait la force. »<br>Incorrect : « Ce n'est pas la bonne réponse. »</dd><dt>Navigation</dt><dd>Continuer → question 2.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-4">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-over t">QUESTION 2 SUR 5</p><p class="wf-h sm">Un e-mail qui affiche le logo de ta banque est forcément authentique.</p>
+    <div class="wf-tf"><span>Vrai</span><span class="ok">Faux</span></div><span class="wf-btn r">Valider</span></div></div></div>
+      <div><div class="sb-n"><b>04</b><div><span>Évaluation</span><h3>Logo de la banque</h3></div></div>
+        <span class="sb-kind">Vrai / faux · 10 pts · 2 essais</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Objectif « IDENTIFIER » : un logo ne prouve pas qu'un message est authentique.</dd><dt>Texte à l'écran</dt><dd>« Un e-mail qui affiche le logo de ta banque est forcément authentique. » · Vrai · <b>Faux</b> (bonne réponse).</dd><dt>Interaction</dt><dd>Choix Vrai / Faux puis « Valider ». Seconde tentative autorisée.</dd><dt>Feedback</dt><dd>Correct : « Exact : un logo se copie en deux secondes. »<br>1re erreur : « Pas tout à fait. Essaie encore. »<br>2e erreur : « Ce n'est pas la bonne réponse. »</dd><dt>Navigation</dt><dd>Continuer → question 3.</dd><dt>Note de conception</dt><dd class="note">Question piège : la seconde tentative laisse l'apprenant corriger son intuition.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-5">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-over t">QUESTION 3 SUR 5</p><p class="wf-h sm">Associe chaque situation au bon réflexe.</p>
+    <div class="wf-dd"><div><span>SMS « colis bloqué »</span><span>Nouvelle version dispo</span><span>Création de compte</span></div><div><span class="ok">Hameçonnage</span><span class="ok">Mise à jour</span><span class="ok">Mot de passe unique</span></div></div><span class="wf-btn r">Valider</span></div></div></div>
+      <div><div class="sb-n"><b>05</b><div><span>Évaluation</span><h3>Situations</h3></div></div>
+        <span class="sb-kind">Glisser-déposer · 10 pts · 1 essai</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Relier chaque situation du quotidien au bon réflexe.</dd><dt>Texte à l'écran</dt><dd>« Associe chaque situation au bon réflexe. » · SMS « colis bloqué » avec un lien → Hameçonnage · Alerte « nouvelle version disponible » → Mise à jour · Création d'un compte en ligne → Mot de passe unique.</dd><dt>Interaction</dt><dd>Glisser chaque situation sur sa cible, puis « Valider ».</dd><dt>Feedback</dt><dd>Correct : « Bonne réponse ! »<br>Incorrect : « Ce n'est pas la bonne réponse. »</dd><dt>Navigation</dt><dd>Continuer → question 4.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-6">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-over t">QUESTION 4 SUR 5</p><p class="wf-h sm">Remets dans l'ordre la bonne réaction face à un e-mail suspect.</p>
+    <ol class="wf-ord"><li>Ne pas cliquer sur le lien</li><li>Vérifier l'adresse de l'expéditeur</li><li>Signaler le message</li><li>Supprimer l'e-mail</li></ol><span class="wf-btn r">Valider</span></div></div></div>
+      <div><div class="sb-n"><b>06</b><div><span>Évaluation</span><h3>E-mail suspect</h3></div></div>
+        <span class="sb-kind">Remise en ordre · 10 pts · 1 essai</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Objectif « APPLIQUER » : enchaîner les bons gestes face à un e-mail suspect.</dd><dt>Texte à l'écran</dt><dd>« Remets dans l'ordre la bonne réaction face à un e-mail suspect. » · 1. Ne pas cliquer sur le lien · 2. Vérifier l'adresse de l'expéditeur · 3. Signaler le message · 4. Supprimer l'e-mail.</dd><dt>Interaction</dt><dd>Réordonner les étapes par glisser-déposer, puis « Valider ».</dd><dt>Feedback</dt><dd>Correct : « Bonne réponse ! »<br>Incorrect : « Ce n'est pas la bonne réponse. »</dd><dt>Navigation</dt><dd>Continuer → question 5.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-7">
+      <div class="side"><div class="wf"><div class="wf-pad"><p class="wf-over t">QUESTION 5 SUR 5</p><p class="wf-h sm">Complète : la double ________ ajoute une seconde preuve d'identité.</p>
+    <span class="wf-input wide ok">authentification</span><span class="wf-btn r">Valider</span></div></div></div>
+      <div><div class="sb-n"><b>07</b><div><span>Évaluation</span><h3>Double authentification</h3></div></div>
+        <span class="sb-kind">Texte à compléter · 10 pts · 1 essai</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Retenir le terme clé du premier réflexe.</dd><dt>Texte à l'écran</dt><dd>« Complète : la double ________ ajoute une seconde preuve d'identité. »</dd><dt>Interaction</dt><dd>Saisie libre, puis « Valider ». Réponses acceptées : <code>authentification</code>, <code>authentication</code>.</dd><dt>Feedback</dt><dd>Correct : « Bonne réponse ! »<br>Incorrect : « Ce n'est pas la bonne réponse. »</dd><dt>Navigation</dt><dd>Continuer → résultats.</dd></dl></div>
+    </article>
+    <article class="shot-row" id="ecran-8">
+      <div class="side"><div class="wf"><div class="wf-pad c"><p class="wf-h sm">Tes résultats</p><span class="wf-score">%Score% %</span><p class="wf-s">%Points% / 50 points · score requis : 80 %</p>
+    <div class="wf-split"><span class="ok">Réussi · Terminer</span><span class="ko">Échoué · Recommencer le quiz</span></div></div></div></div>
+      <div><div class="sb-n"><b>08</b><div><span>Évaluation</span><h3>Résultats</h3></div></div>
+        <span class="sb-kind">Écran de résultats</span>
+        <dl class="spec"><dt>Objectif</dt><dd>Donner le score et la suite à donner.</dd><dt>Texte à l'écran</dt><dd>« Tes résultats » · score en % · « X / 50 points · score requis : 80 % ».</dd><dt>Interaction</dt><dd>Le calque affiché dépend du score.</dd><dt>Feedback</dt><dd>Réussi : « Bravo, tu as réussi l'évaluation ! » · bouton « Terminer » (quitte le module).<br>Échoué : « Tu n'as pas encore atteint le score requis. » · bouton « Recommencer le quiz ».</dd><dt>Navigation</dt><dd>Terminer → fin du module · Recommencer → question 1.</dd></dl></div>
+    </article>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><a class="logo" href="index.html">Youssef Kallel<span>.</span></a><p>Learning designer. Je conçois des modules e-learning clairs, utiles et engageants, et les outils qui vont avec.</p><a class="btn primary" href="contact.html">Me contacter</a></div>
+    <nav class="foot-col" aria-label="Pied de page"><h2>Pages</h2><ul><li><a href="index.html">Accueil</a></li><li><a href="projets.html" aria-current="page">Projets</a></li><li><a href="applications.html">Applications</a></li><li><a href="demarche.html">Démarche</a></li><li><a href="parcours.html">Parcours</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <div class="foot-col"><h2>Contact</h2><ul>
+      <li><a href="mailto:youssefkallel2000@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-mail</a></li>
+      <li><a href="https://www.linkedin.com/in/youssef-kallel-49a892208/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a></li>
+      <li><a href="cv-youssef-kallel.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 12v6m-3-3 3 3 3-3"/></svg>CV (PDF)</a></li>
+    </ul></div>
+  </div>
+  <p class="foot-mark" aria-hidden="true">Youssef Kallel<span>.</span></p>
+  <div class="foot-bottom"><span>© 2026 Youssef Kallel · Site conçu avec l'assistance de l'IA</span><button class="totop" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>Haut de page</button></div>
+</div></footer>
+
+<script>if(!document.querySelector('.todo:not(#draft .todo)'))document.getElementById('draft').hidden=true;</script>
+
+<script src="site.js"></script>
+</body></html>

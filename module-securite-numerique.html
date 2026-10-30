@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Les bons réflexes de la sécurité numérique</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Lexend:wght@400;600;700&display=swap"><style>html,body{margin:0;height:100%;background:#141a1d}.tp{--tp-accent:#0d6e6e;--tp-bg:#141a1d;--tp-bar:#1c2427;--tp-line:#2b363b;--tp-fg:#e8eef0;--tp-mut:#97a6ad;position:relative;height:100%;display:grid;grid-template-rows:auto 1fr auto;background:var(--tp-bg);color:var(--tp-fg);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;overflow:hidden;color-scheme:dark}
+.tp *{box-sizing:border-box}
+.tp-head{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--tp-bar);border-bottom:1px solid var(--tp-line)}
+.tp-title{flex:1;min-width:0;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-count{color:var(--tp-mut);font-variant-numeric:tabular-nums;font-size:13px}
+.tp-main{position:relative;display:flex;min-height:0}
+.tp-drawer{width:0;overflow:hidden;background:var(--tp-bar);border-right:1px solid var(--tp-line);transition:width .25s ease;display:flex;flex-direction:column;flex-shrink:0}
+.tp.drawer-open .tp-drawer{width:250px}
+.tp-tabs{display:flex;border-bottom:1px solid var(--tp-line);min-width:250px}
+.tp-tab{flex:1;background:none;border:0;color:var(--tp-mut);padding:10px 4px;font:inherit;font-size:12px;cursor:pointer;border-bottom:2px solid transparent}
+.tp-tab.on{color:var(--tp-fg);border-bottom-color:var(--tp-accent)}
+.tp-panel{overflow:auto;padding:8px;min-width:250px;flex:1}
+.tp-scene{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tp-mut);padding:10px 8px 4px}
+.tp-mi{display:block;width:100%;text-align:left;background:none;border:0;color:var(--tp-fg);font:inherit;padding:7px 10px;border-radius:6px;cursor:pointer;opacity:.85}
+.tp-mi.seen{opacity:1}.tp-mi.seen::before{content:"✓ ";color:var(--tp-accent)}
+.tp-mi.on{background:rgba(255,255,255,.08);opacity:1}
+.tp-mi:disabled{opacity:.35;cursor:not-allowed}
+.tp-notes{white-space:pre-wrap;line-height:1.55;padding:6px;color:var(--tp-fg)}
+.tp-gl{padding:8px 6px;border-bottom:1px solid var(--tp-line)}.tp-gl p{margin:4px 0 0;color:var(--tp-mut);line-height:1.45}
+.tp-res{display:block;color:var(--tp-fg);padding:8px 6px;text-decoration:underline;text-decoration-color:var(--tp-accent)}
+.tp-wrap{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:6px}
+.tp-sizer{position:relative;flex-shrink:0;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.tp-stage{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;background:#fff}
+.tp-layer{position:absolute;inset:0;pointer-events:none}
+.tp-layer>*{pointer-events:auto}
+.tp-foot{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--tp-bar);border-top:1px solid var(--tp-line);flex-wrap:wrap}
+.tp-b{background:transparent;color:var(--tp-fg);border:1px solid var(--tp-line);border-radius:8px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.tp-b:hover{border-color:var(--tp-mut)}
+.tp-primary{background:var(--tp-accent);border-color:var(--tp-accent);color:#fff}
+.tp-primary:hover{filter:brightness(1.12)}
+.tp-ib{background:transparent;border:1px solid var(--tp-line);color:var(--tp-fg);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:14px;flex-shrink:0}
+.tp-b:focus-visible,.tp-ib:focus-visible,.tp-mi:focus-visible,.tp-tab:focus-visible,.tp-click:focus-visible{outline:2px solid var(--tp-accent);outline-offset:2px}
+.tp-seek{flex:1;min-width:80px;height:6px;background:var(--tp-line);border-radius:3px;cursor:pointer;position:relative}
+.tp-seek-fill{position:absolute;left:0;top:0;bottom:0;background:var(--tp-accent);border-radius:3px;width:0}
+.tp-toast{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);background:#fff;color:#172126;padding:10px 16px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.35);font-weight:600;z-index:20}
+.tp-cover{position:absolute;inset:0;background:rgba(10,16,18,.92);display:flex;align-items:center;justify-content:center;z-index:30;padding:24px}
+.tp-cover-in{text-align:center;max-width:560px}.tp-cover-in h1,.tp-cover-in h2{font-family:'Lexend',system-ui,sans-serif;margin:0 0 10px;text-wrap:balance}.tp-cover-in p{color:var(--tp-mut);margin:0 0 22px}
+.tp-big{padding:14px 34px;font-size:17px;border-radius:999px}
+.tp-click{cursor:pointer}.tp-hidden{visibility:hidden!important}.tp-disabled{pointer-events:none!important}
+.tr-obj{position:absolute;user-select:none}
+.tr-anim{position:absolute;inset:0}
+.tr-body{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box}
+.tr-text{white-space:pre-wrap;word-wrap:break-word;width:100%}
+.tr-image .tr-body img{width:100%;height:100%;display:block}
+.tr-input .tr-body input{width:100%;height:100%;border:0;background:transparent;font:inherit;color:inherit;padding:0 12px;outline:none}
+.tr-input .tr-body:focus-within{box-shadow:0 0 0 3px rgba(13,110,110,.35)}
+.tr-slider .tr-body{justify-content:center}.tr-slider input{width:100%;accent-color:#0d6e6e}
+.tr-video video,.tr-audio audio{width:100%;height:100%;display:block;background:#000}
+.tr-audio audio{background:transparent}
+.tr-media-empty{flex:1;display:flex;align-items:center;justify-content:center;background:#e6ecee;color:#4a5960;font:600 15px system-ui;border:2px dashed #b3c0c5;border-radius:8px}
+.tq{--tq-accent:#0d6e6e;height:100%;display:flex;flex-direction:column;gap:18px;font-family:'Lexend',system-ui,sans-serif;color:#172126;text-align:left}
+.tq-prompt{font-size:26px;font-weight:600;line-height:1.3;text-wrap:balance}
+.tq-choices{display:flex;flex-direction:column;gap:10px}
+.tq-choice{display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:2px solid #d3dcdf;border-radius:12px;padding:14px 18px;font:inherit;font-size:19px;color:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.tq-choice:hover:not(:disabled){border-color:var(--tq-accent)}
+.tq-choice.on{border-color:var(--tq-accent);background:color-mix(in srgb,var(--tq-accent) 10%,#fff)}
+.tq-choice:disabled{cursor:default}
+.tq-mark{width:22px;height:22px;border-radius:50%;border:2px solid #9aa9af;flex-shrink:0;display:grid;place-items:center}
+.tq-mark.sq{border-radius:5px}
+.tq-choice.on .tq-mark{border-color:var(--tq-accent);background:var(--tq-accent);box-shadow:inset 0 0 0 3px #fff}
+.tq-fill{font:inherit;font-size:22px;padding:14px 18px;border:2px solid #d3dcdf;border-radius:12px;width:100%;max-width:520px;color:inherit;background:#fff}
+.tq-fill:focus{outline:none;border-color:var(--tq-accent)}
+.tq-order{display:flex;flex-direction:column;gap:8px}
+.tq-orow{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #d3dcdf;border-radius:12px;padding:10px 12px;font-size:18px}
+.tq-onum{width:30px;height:30px;border-radius:50%;background:var(--tq-accent);color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700;flex-shrink:0}
+.tq-otxt{flex:1}
+.tq-obtn{width:34px;height:34px;border:1px solid #c5d0d4;background:#f4f7f8;border-radius:8px;cursor:pointer;color:#33444b}
+.tq-obtn:disabled{opacity:.35;cursor:default}
+.tq-dd{display:grid;grid-template-columns:1fr 1.6fr;gap:20px;flex:1;min-height:0}
+.tq-pool{display:flex;flex-direction:column;gap:10px;background:#eef3f4;border-radius:14px;padding:12px;border:2px dashed #c4d0d4}
+.tq-targets{display:flex;flex-direction:column;gap:10px}
+.tq-target{border:2px dashed #b9c6cb;border-radius:14px;padding:8px 10px;background:#fff;display:flex;align-items:center;gap:12px;min-height:66px}
+.tq-tlabel{font-weight:700;font-size:16px;width:38%;color:var(--tq-accent)}
+.tq-slot{flex:1;display:flex;flex-direction:column;gap:6px}
+.tq-item{background:#fff;border:2px solid var(--tq-accent);border-radius:10px;padding:10px 12px;font-size:15px;cursor:grab;touch-action:none;position:relative;z-index:1}
+.tq-item.drag{cursor:grabbing;box-shadow:0 10px 24px rgba(0,0,0,.2);z-index:5}
+.tq-hint{color:#6b7c83;font-size:14px;padding:6px}
+</style></head><body><div id="app" style="height:100%"></div><script>(function (G) {
+"use strict";
+var ANIMS = {
+  fade: [{ opacity: 0 }, { opacity: 1 }],
+  "fly-left": [{ transform: "translateX(-80px)", opacity: 0 }, { transform: "translateX(0)", opacity: 1 }],
+  "fly-right": [{ transform: "translateX(80px)", opacity: 0 }, { transform: "translateX(0)", opacity: 1 }],
+  "fly-top": [{ transform: "translateY(-80px)", opacity: 0 }, { transform: "translateY(0)", opacity: 1 }],
+  "fly-bottom": [{ transform: "translateY(80px)", opacity: 0 }, { transform: "translateY(0)", opacity: 1 }],
+  zoom: [{ transform: "scale(.4)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+  spin: [{ transform: "rotate(-120deg) scale(.4)", opacity: 0 }, { transform: "rotate(0) scale(1)", opacity: 1 }],
+  bounce: [{ transform: "translateY(-60px)", opacity: 0, offset: 0 }, { transform: "translateY(0)", opacity: 1, offset: 0.55 }, { transform: "translateY(-14px)", opacity: 1, offset: 0.78 }, { transform: "translateY(0)", opacity: 1, offset: 1 }],
+  wipe: [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0 0 0)" }]
+};
+var TRANS = {
+  fade: [{ opacity: 0 }, { opacity: 1 }],
+  push: [{ transform: "translateX(60px)", opacity: 0 }, { transform: "translateX(0)", opacity: 1 }],
+  zoom: [{ transform: "scale(.92)", opacity: 0 }, { transform: "scale(1)", opacity: 1 }],
+  wipe: [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0 0 0)" }]
+};
+function uid() { return Math.random().toString(36).slice(2, 10); }
+function sty(o, st) {
+  var s = Object.assign({}, o.style || {});
+  if (st && st !== "Normal" && o.states && o.states[st]) Object.assign(s, o.states[st]);
+  return s;
+}
+function fmt(v) { if (v === true) return "Vrai"; if (v === false) return "Faux"; return v == null ? "" : String(v); }
+function interpText(t, vars) {
+  return String(t == null ? "" : t).replace(/%([\w.À-ſ]+)%/g, function (m, k) { return Object.prototype.hasOwnProperty.call(vars, k) ? fmt(vars[k]) : m; });
+}
+function truthy(v) { return v === true || /^(true|vrai|1|oui)$/i.test(String(v)); }
+function castVal(v, type) {
+  if (type === "number") { var n = parseFloat(v); return isNaN(n) ? 0 : n; }
+  if (type === "bool") return truthy(v);
+  return v == null ? "" : String(v);
+}
+function shuffle(n, seedStr) {
+  var a = []; for (var i = 0; i < n; i++) a.push(i);
+  var s = 0; String(seedStr || "x").split("").forEach(function (c) { s = (s * 31 + c.charCodeAt(0)) >>> 0; });
+  for (var j = n - 1; j > 0; j--) { s = (s * 1103515245 + 12345) >>> 0; var r = s % (j + 1); var t = a[j]; a[j] = a[r]; a[r] = t; }
+  if (n > 1 && a.every(function (v, i) { return v === i; })) { var t2 = a[0]; a[0] = a[1]; a[1] = t2; }
+  return a;
+}
+function initAnswer(q) {
+  q = q || {};
+  switch (q.kind) {
+    case "mr": return { sel: [] };
+    case "fill": return { text: "" };
+    case "order": return { order: shuffle((q.items || []).length, (q.prompt || "") + "o") };
+    case "dd": var n = (q.pairs || []).length; return { place: new Array(n).fill(-1), items: shuffle(n, (q.prompt || "") + "i"), targets: shuffle(n, (q.prompt || "") + "t") };
+    default: return { sel: -1 };
+  }
+}
+function evalQuestion(q, a) {
+  switch (q.kind) {
+    case "mc": case "tf": return a.sel >= 0 ? { answered: true, correct: !!((q.choices || [])[a.sel] || {}).correct } : { answered: false };
+    case "mr": if (!a.sel.length) return { answered: false };
+      return { answered: true, correct: (q.choices || []).every(function (c, i) { return !!c.correct === (a.sel.indexOf(i) >= 0); }) };
+    case "fill": var t = (a.text || "").trim().toLowerCase(); if (!t) return { answered: false };
+      var acc = String(q.accepted || "").split(/[;,\n]/).map(function (s) { return s.trim().toLowerCase(); }).filter(Boolean);
+      return { answered: true, correct: acc.indexOf(t) >= 0 };
+    case "order": return { answered: true, correct: a.order.every(function (v, i) { return v === i; }) };
+    case "dd": if (a.place.some(function (p) { return p < 0; })) return { answered: false };
+      return { answered: true, correct: a.place.every(function (p, i) { return p === i; }) };
+  }
+  return { answered: false };
+}
+function mk(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+
+function renderQuestion(host, sl, ctx) {
+  var q = sl.quiz || {}; host.innerHTML = "";
+  var box = mk("div", "tq"); box.style.setProperty("--tq-accent", ctx.accent || "#0d6e6e");
+  var I = ctx.interp || function (x) { return x; };
+  box.appendChild(mk("div", "tq-prompt", I(q.prompt || "")));
+  var ans = ctx.answer(sl), locked = ctx.mode === "edit" || ctx.locked(sl);
+  var rr = function () { renderQuestion(host, sl, ctx); };
+  if (q.kind === "mc" || q.kind === "tf" || q.kind === "mr") {
+    var list = mk("div", "tq-choices");
+    (q.choices || []).forEach(function (c, i) {
+      var b = mk("button", "tq-choice"); b.type = "button";
+      var on = q.kind === "mr" ? ans.sel.indexOf(i) >= 0 : ans.sel === i;
+      if (on) b.classList.add("on");
+      b.appendChild(mk("span", "tq-mark" + (q.kind === "mr" ? " sq" : "")));
+      b.appendChild(mk("span", "", I(c.text)));
+      b.disabled = locked;
+      b.onclick = function () {
+        if (q.kind === "mr") { var k = ans.sel.indexOf(i); if (k < 0) ans.sel.push(i); else ans.sel.splice(k, 1); } else ans.sel = i;
+        rr();
+      };
+      list.appendChild(b);
+    });
+    box.appendChild(list);
+  } else if (q.kind === "fill") {
+    var inp = mk("input", "tq-fill"); inp.type = "text"; inp.value = ans.text || ""; inp.placeholder = "Ta réponse"; inp.disabled = locked;
+    inp.oninput = function () { ans.text = inp.value; };
+    box.appendChild(inp);
+  } else if (q.kind === "order") {
+    var ol = mk("div", "tq-order");
+    ans.order.forEach(function (idx, pos) {
+      var row = mk("div", "tq-orow");
+      row.appendChild(mk("span", "tq-onum", String(pos + 1)));
+      row.appendChild(mk("span", "tq-otxt", I((q.items || [])[idx] || "")));
+      var up = mk("button", "tq-obtn", "▲"), dn = mk("button", "tq-obtn", "▼");
+      up.type = dn.type = "button"; up.setAttribute("aria-label", "Monter"); dn.setAttribute("aria-label", "Descendre");
+      up.disabled = locked || pos === 0; dn.disabled = locked || pos === ans.order.length - 1;
+      up.onclick = function () { var t = ans.order[pos - 1]; ans.order[pos - 1] = ans.order[pos]; ans.order[pos] = t; rr(); };
+      dn.onclick = function () { var t = ans.order[pos + 1]; ans.order[pos + 1] = ans.order[pos]; ans.order[pos] = t; rr(); };
+      row.appendChild(up); row.appendChild(dn); ol.appendChild(row);
+    });
+    box.appendChild(ol);
+  } else if (q.kind === "dd") {
+    var grid = mk("div", "tq-dd"), pool = mk("div", "tq-pool"), tg = mk("div", "tq-targets");
+    var mkItem = function (i) {
+      var it = mk("div", "tq-item", I(q.pairs[i].item));
+      if (!locked) it.onpointerdown = function (e) {
+        e.preventDefault(); try { it.setPointerCapture(e.pointerId); } catch (_) {}
+        var k = ctx.scale ? ctx.scale() : 1, sx = e.clientX, sy = e.clientY; it.classList.add("drag");
+        it.onpointermove = function (ev) { it.style.transform = "translate(" + (ev.clientX - sx) / k + "px," + (ev.clientY - sy) / k + "px)"; };
+        it.onpointerup = function (ev) {
+          it.onpointermove = it.onpointerup = null; it.style.visibility = "hidden";
+          var under = document.elementFromPoint(ev.clientX, ev.clientY); it.style.visibility = "";
+          var t = under && under.closest(".tq-target"), p = under && under.closest(".tq-pool");
+          if (t) { var ti = +t.dataset.t; ans.place.forEach(function (pp, j) { if (pp === ti && j !== i) ans.place[j] = -1; }); ans.place[i] = ti; }
+          else if (p) ans.place[i] = -1;
+          rr();
+        };
+      };
+      return it;
+    };
+    ans.items.forEach(function (i) { if (ans.place[i] < 0) pool.appendChild(mkItem(i)); });
+    if (!pool.children.length) pool.appendChild(mk("span", "tq-hint", "Tous les éléments sont placés"));
+    ans.targets.forEach(function (ti) {
+      var t = mk("div", "tq-target"); t.dataset.t = ti;
+      t.appendChild(mk("div", "tq-tlabel", I(q.pairs[ti].target)));
+      var slot = mk("div", "tq-slot");
+      ans.place.forEach(function (p, i) { if (p === ti) slot.appendChild(mkItem(i)); });
+      t.appendChild(slot); tg.appendChild(t);
+    });
+    grid.appendChild(pool); grid.appendChild(tg); box.appendChild(grid);
+  }
+  host.appendChild(box);
+}
+
+function buildObj(o, ctx) {
+  var e = mk("div", "tr-obj tr-" + o.type); e.dataset.id = o.id;
+  var a = mk("div", "tr-anim"), b = mk("div", "tr-body");
+  e.appendChild(a); a.appendChild(b); e._a = a; e._b = b;
+  if (o.type === "image") { var im = mk("img"); im.alt = o.alt || ""; im.draggable = false; b.appendChild(im); e._img = im; }
+  else if (o.type === "input") { var i = mk("input"); i.type = "text"; i.placeholder = o.placeholder || ""; i.setAttribute("aria-label", o.alt || o.name || "Saisie"); if (ctx.mode === "edit") i.disabled = true; b.appendChild(i); e._input = i; }
+  else if (o.type === "slider") { var r = mk("input"); r.type = "range"; r.min = o.min || 0; r.max = o.max == null ? 10 : o.max; r.step = o.step || 1; r.setAttribute("aria-label", o.alt || o.name || "Curseur"); if (ctx.mode === "edit") r.disabled = true; b.appendChild(r); e._input = r; }
+  else if (o.type === "video" || o.type === "audio") {
+    if (o.src) { var m = mk(o.type); m.controls = true; m.preload = "metadata"; if (o.type === "video") m.playsInline = true; m.src = o.src; b.appendChild(m); e._media = m; }
+    else b.appendChild(mk("div", "tr-media-empty", o.type === "video" ? "Vidéo : choisis un fichier" : "Audio : choisis un fichier"));
+  }
+  else if (o.type === "question") { e._q = true; renderQuestion(b, ctx.slide, ctx); }
+  else { var t = mk("div", "tr-text"); b.appendChild(t); e._t = t; }
+  paintObj(e, o, o.initialState || "Normal", ctx);
+  return e;
+}
+function paintObj(e, o, state, ctx) {
+  var s = sty(o, state), b = e._b;
+  e.style.left = o.x + "px"; e.style.top = o.y + "px"; e.style.width = o.w + "px"; e.style.height = o.h + "px";
+  b.style.transform = o.rot ? "rotate(" + o.rot + "deg)" : "";
+  var op = s.opacity == null ? 1 : +s.opacity;
+  if (ctx.mode === "edit" && state === "Hidden") op = Math.min(op, 0.3);
+  b.style.opacity = op;
+  b.style.background = o.type === "hotspot" ? "transparent" : (s.fill || "transparent");
+  b.style.border = (+s.strokeW > 0) ? (s.strokeW + "px " + (s.dash ? "dashed" : "solid") + " " + (s.stroke || "#000")) : "none";
+  b.style.borderRadius = o.type === "ellipse" ? "50%" : (s.radius || 0) + "px";
+  b.style.boxShadow = s.shadow ? "0 10px 28px rgba(10,30,40,.22)" : "none";
+  b.style.color = s.color || "#172126";
+  b.style.fontSize = (s.fontSize || 18) + "px";
+  b.style.fontFamily = s.fontFamily ? "'" + s.fontFamily + "', system-ui, sans-serif" : "system-ui, sans-serif";
+  b.style.fontWeight = s.bold ? "700" : "400";
+  b.style.fontStyle = s.italic ? "italic" : "normal";
+  b.style.textAlign = s.align || "left";
+  b.style.justifyContent = { top: "flex-start", middle: "center", bottom: "flex-end" }[s.valign || "top"];
+  b.style.padding = (s.padding == null ? (o.type === "text" ? 4 : 0) : s.padding) + "px";
+  b.style.lineHeight = s.lineHeight || 1.3;
+  if (e._t) { var tx = s.text != null ? s.text : o.text; e._t.textContent = ctx.interp ? ctx.interp(tx || "") : (tx || ""); }
+  if (e._img) { var src = s.src || o.src || ""; if (e._img.getAttribute("src") !== src) { if (src) e._img.src = src; else e._img.removeAttribute("src"); } e._img.style.objectFit = o.fit || "cover"; e._img.style.borderRadius = (s.radius || 0) + "px"; }
+  e.dataset.state = state;
+}
+
+/* ---------------- PLAYER ---------------- */
+function Player(root, P, opts) {
+  opts = opts || {};
+  var set = P.settings || {}, W = set.width || 960, H = set.height || 540;
+  var list = []; (P.scenes || []).forEach(function (sc) { sc.slides.forEach(function (s) { list.push({ s: s, sc: sc }); }); });
+  var S = {}, cur = null, raf = 0, k = 1, depth = 0, alive = true;
+  function resetAll() {
+    S.vars = {}; (P.variables || []).forEach(function (v) { S.vars[v.name] = castVal(v.value, v.type); });
+    S.visited = {}; S.quiz = {}; S.answers = {}; S.objState = {}; S.pos = {};
+  }
+  resetAll();
+  var showMenu = set.showMenu !== false;
+  root.innerHTML =
+    '<div class="tp">' +
+    '<div class="tp-head"><button class="tp-ib tp-drawer-btn" type="button" aria-label="Menu">☰</button><div class="tp-title"></div><div class="tp-count"></div></div>' +
+    '<div class="tp-main"><aside class="tp-drawer"><div class="tp-tabs"></div><div class="tp-panel"></div></aside>' +
+    '<div class="tp-wrap"><div class="tp-sizer"><div class="tp-stage"></div></div></div></div>' +
+    '<div class="tp-foot"><button class="tp-b tp-prev" type="button">◀ Précédent</button><button class="tp-ib tp-play" type="button" aria-label="Pause">❚❚</button><button class="tp-ib tp-replay" type="button" aria-label="Rejouer la diapo">↺</button>' +
+    '<div class="tp-seek" role="slider" aria-label="Chronologie"><div class="tp-seek-fill"></div></div>' +
+    '<button class="tp-b tp-submit tp-primary" type="button">Valider</button><button class="tp-b tp-next tp-primary" type="button">Suivant ▶</button></div>' +
+    '<div class="tp-toast" hidden></div></div>';
+  var $ = function (s) { return root.querySelector(s); };
+  var tp = $(".tp"), stage = $(".tp-stage"), sizer = $(".tp-sizer"), wrap = $(".tp-wrap");
+  tp.style.setProperty("--tp-accent", set.accent || "#0d6e6e");
+  stage.style.width = W + "px"; stage.style.height = H + "px";
+  $(".tp-title").textContent = P.title || "Module";
+  if (set.showSeek === false) $(".tp-seek").style.visibility = "hidden";
+  function fit() {
+    var r = wrap.getBoundingClientRect(); k = Math.min((r.width - 12) / W, (r.height - 12) / H); if (!(k > 0)) k = 0.1;
+    sizer.style.width = W * k + "px"; sizer.style.height = H * k + "px"; stage.style.transform = "scale(" + k + ")";
+  }
+  var ro = new ResizeObserver(fit); ro.observe(wrap);
+
+  /* drawer */
+  var tabs = [];
+  if (showMenu) tabs.push(["menu", "Menu"]);
+  tabs.push(["notes", "Notes"]);
+  if ((set.glossary || []).length) tabs.push(["glossary", "Glossaire"]);
+  if ((set.resources || []).length) tabs.push(["resources", "Ressources"]);
+  var tab = tabs[0][0];
+  if (opts.drawerOpen !== false && window.innerWidth > 760 && showMenu) tp.classList.add("drawer-open");
+  $(".tp-drawer-btn").onclick = function () { tp.classList.toggle("drawer-open"); setTimeout(fit, 260); };
+  function renderDrawer() {
+    var tb = $(".tp-tabs"); tb.innerHTML = "";
+    tabs.forEach(function (t) { var b = mk("button", "tp-tab" + (t[0] === tab ? " on" : ""), t[1]); b.type = "button"; b.onclick = function () { tab = t[0]; renderDrawer(); }; tb.appendChild(b); });
+    var pn = $(".tp-panel"); pn.innerHTML = "";
+    if (tab === "menu") {
+      var n = 0;
+      (P.scenes || []).forEach(function (sc) {
+        pn.appendChild(mk("div", "tp-scene", sc.name));
+        sc.slides.forEach(function (s) {
+          var idx = n++; var b = mk("button", "tp-mi" + (cur && cur.idx === idx ? " on" : "") + (S.visited[s.id] ? " seen" : ""), s.title || ("Diapo " + (idx + 1)));
+          b.type = "button"; b.disabled = set.freeNav === false && !S.visited[s.id];
+          b.onclick = function () { go(idx); }; pn.appendChild(b);
+        });
+      });
+    } else if (tab === "notes") {
+      var nt = cur && cur.sl.notes; pn.appendChild(mk("div", "tp-notes", nt ? interpText(nt, S.vars) : "Aucune note pour cette diapositive."));
+    } else if (tab === "glossary") {
+      (set.glossary || []).forEach(function (g) { var d = mk("div", "tp-gl"); d.appendChild(mk("strong", "", g.term)); d.appendChild(mk("p", "", g.def)); pn.appendChild(d); });
+    } else if (tab === "resources") {
+      (set.resources || []).forEach(function (r) { var a = mk("a", "tp-res", r.label || r.url); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; pn.appendChild(a); });
+    }
+  }
+
+  /* SCORM 1.2 */
+  var API = null;
+  if (opts.scorm) {
+    try { var w = window; for (var i = 0; i < 12 && w; i++) { if (w.API) { API = w.API; break; } if (w.parent === w) break; w = w.parent; } } catch (_) {}
+    try { if (!API && window.opener && window.opener.API) API = window.opener.API; } catch (_) {}
+    if (API) { try { API.LMSInitialize(""); var st = API.LMSGetValue("cmi.core.lesson_status"); if (!st || st === "not attempted") API.LMSSetValue("cmi.core.lesson_status", "incomplete"); API.LMSCommit(""); } catch (_) {}
+      window.addEventListener("beforeunload", function () { try { API.LMSCommit(""); API.LMSFinish(""); } catch (_) {} }); }
+  }
+  function scormLoc(i) { if (!API) return; try { API.LMSSetValue("cmi.core.lesson_location", String(i)); if (i === list.length - 1 && !list.some(function (x) { return x.s.type === "quiz"; })) API.LMSSetValue("cmi.core.lesson_status", "completed"); API.LMSCommit(""); } catch (_) {} }
+  function scormReport(r) { if (!API) return; try { API.LMSSetValue("cmi.core.score.raw", String(r.pct)); API.LMSSetValue("cmi.core.score.min", "0"); API.LMSSetValue("cmi.core.score.max", "100"); API.LMSSetValue("cmi.core.lesson_status", r.passed ? "passed" : "failed"); API.LMSCommit(""); } catch (_) {} }
+
+  function computeResults() {
+    var pts = 0, max = 0;
+    list.forEach(function (x) { var s = x.s; if (s.type === "quiz" && s.quiz && s.quiz.graded !== false) { var p = +s.quiz.points || 0; max += p; var r = S.quiz[s.id]; if (r && r.correct) pts += p; } });
+    var pct = max ? Math.round(pts * 100 / max) : 0, pass = +(set.passScore == null ? 80 : set.passScore);
+    S.vars["Results.ScorePoints"] = pts; S.vars["Results.MaxPoints"] = max; S.vars["Results.ScorePercent"] = pct; S.vars["Results.PassPercent"] = pass; S.vars["Results.Passed"] = pct >= pass;
+    return { pts: pts, max: max, pct: pct, passed: pct >= pass };
+  }
+  computeResults();
+
+  var ctx = { mode: "play", accent: set.accent, interp: function (s) { return interpText(s, S.vars); },
+    answer: function (sl) { return S.answers[sl.id] || (S.answers[sl.id] = initAnswer(sl.quiz)); },
+    locked: function (sl) { return !!(S.quiz[sl.id] && S.quiz[sl.id].final); }, scale: function () { return k; } };
+  Object.defineProperty(ctx, "slide", { get: function () { return cur && cur.sl; } });
+
+  function findObj(id) { if (!cur) return null; for (var i = 0; i < cur.sl.layers.length; i++) { var o = cur.sl.layers[i].objects.find(function (x) { return x.id === id; }); if (o) return o; } return null; }
+  function stateOf(o) { return S.objState[o.id] || o.initialState || "Normal"; }
+  function paintState(o) {
+    var e = cur && cur.els[o.id]; if (!e) return;
+    var st = stateOf(o), has = function (n) { return o.states && o.states[n]; };
+    if (st !== "Disabled" && st !== "Hidden") {
+      if (e._down && has("Down")) st = "Down";
+      else if (e._hover && has("Hover") && (st === "Normal" || st === "Visited")) st = "Hover";
+    }
+    if (e._q) { /* question keeps its own UI */ } else paintObj(e, o, st, ctx);
+    var p = S.pos[o.id]; if (p) { e.style.left = p.x + "px"; e.style.top = p.y + "px"; }
+    var base = stateOf(o);
+    e.classList.toggle("tp-hidden", base === "Hidden"); e.classList.toggle("tp-disabled", base === "Disabled");
+  }
+  function setState(id, st) { S.objState[id] = st; var o = findObj(id); if (o) paintState(o); }
+  function setVar(name, val) {
+    if (name == null || name === "") return;
+    var old = S.vars[name]; S.vars[name] = val;
+    if (old !== val) { refresh(); fire("varChange", name); }
+  }
+  function refresh() {
+    if (!cur) return;
+    Object.keys(cur.els).forEach(function (id) { var e = cur.els[id]; if (e._q) renderQuestion(e._b, cur.sl, ctx); else paintState(e._o); if (e._input && e._o.varName && document.activeElement !== e._input) e._input.value = fmt(S.vars[e._o.varName]); });
+    if (tab === "notes") renderDrawer();
+  }
+  function hasTrig(ev, id) { return (cur.sl.triggers || []).some(function (t) { return t.event === ev && t.source === id; }); }
+  function wire(e, o, lay) {
+    e._o = o; e._layer = lay;
+    var clickable = o.type === "button" || hasTrig("click", o.id) || (o.states && (o.states.Selected || o.states.Visited || o.states.Hover));
+    if (clickable && o.type !== "question") { e.classList.add("tp-click"); e.tabIndex = 0; e.setAttribute("role", "button"); if (o.alt || o.text) e.setAttribute("aria-label", o.alt || o.text); }
+    e.addEventListener("pointerenter", function () { e._hover = true; paintState(o); fire("hoverIn", o.id, lay); });
+    e.addEventListener("pointerleave", function () { e._hover = false; e._down = false; paintState(o); fire("hoverOut", o.id, lay); });
+    e.addEventListener("pointerdown", function () { e._down = true; paintState(o); });
+    e.addEventListener("pointerup", function () { e._down = false; paintState(o); });
+    if (["input", "slider", "question", "video", "audio"].indexOf(o.type) < 0) {
+      var act = function () {
+        var st = stateOf(o); if (st === "Disabled" || st === "Hidden") return;
+        if (o.states && o.states.Selected) {
+          if (st === "Selected") { if (!o.group) setState(o.id, "Normal"); }
+          else { if (o.group) cur.sl.layers.forEach(function (L) { L.objects.forEach(function (x) { if (x.group === o.group && x.id !== o.id && stateOf(x) === "Selected") setState(x.id, "Normal"); }); }); setState(o.id, "Selected"); }
+        } else if (o.states && o.states.Visited && st === "Normal") setState(o.id, "Visited");
+        fire("click", o.id, lay);
+      };
+      e.addEventListener("click", act);
+      e.addEventListener("keydown", function (ev) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); ev.stopPropagation(); act(); } });
+    }
+    if (o.type === "input") { var i = e._input; i.value = fmt(S.vars[o.varName]); i.addEventListener("input", function () { S.vars[o.varName] = i.value; }); i.addEventListener("change", function () { S.vars[o.varName] = ""; setVar(o.varName, i.value); }); }
+    if (o.type === "slider") { var r = e._input; var v = S.vars[o.varName]; r.value = v == null ? (o.min || 0) : v; r.addEventListener("input", function () { setVar(o.varName, +r.value); }); }
+  }
+  function mkLayer(L, isBase) {
+    var d = mk("div", "tp-layer"); d.dataset.layer = L.id; stage.appendChild(d);
+    var ent = { L: L, div: d, t: 0, isBase: isBase };
+    (L.objects || []).forEach(function (o) {
+      var e = buildObj(o, ctx); e._vis = false; e.style.display = "none";
+      wire(e, o, ent); d.appendChild(e); cur.els[o.id] = e; paintState(o);
+    });
+    return ent;
+  }
+  function leave() {
+    if (!cur) return;
+    Object.keys(cur.els).forEach(function (id) { var m = cur.els[id]._media; if (m) try { m.pause(); } catch (_) {} });
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (_) {}
+    cur = null;
+  }
+  function go(i, how) {
+    if (i < 0 || i >= list.length) return;
+    leave();
+    var sl = list[i].s;
+    cur = { sl: sl, idx: i, els: {}, layers: [], baseT: 0, playing: true, ended: false, last: performance.now() };
+    S.visited[sl.id] = true;
+    stage.innerHTML = ""; stage.style.background = sl.bg || "#fff";
+    stage.style.backgroundImage = sl.bgImage ? "url(" + sl.bgImage + ")" : "none"; stage.style.backgroundSize = "cover"; stage.style.backgroundPosition = "center";
+    cur.layers.push(mkLayer(sl.layers[0], true));
+    if (sl.transition && sl.transition !== "none" && TRANS[sl.transition] && how !== "instant") try { stage.animate(TRANS[sl.transition], { duration: 450, easing: "cubic-bezier(.2,.7,.2,1)" }); } catch (_) {}
+    chrome(); renderDrawer(); scormLoc(i);
+    tick();
+    var me = cur; fire("slideStart");
+    if (cur === me && sl.type === "result") doResult();
+    if (cur === me) { updatePlay(); }
+  }
+  function jump(t) {
+    if (!cur) return;
+    if (t === "next") return go(cur.idx + 1);
+    if (t === "prev") return go(cur.idx - 1);
+    if (t === "first") return go(0);
+    if (t === "last") return go(list.length - 1);
+    var i = list.findIndex(function (x) { return x.s.id === t; }); if (i >= 0) go(i);
+  }
+  function showLayer(id) {
+    if (!cur) return; var L = cur.sl.layers.find(function (l) { return l.id === id; });
+    if (!L || L === cur.sl.layers[0]) return;
+    if (cur.layers.some(function (x) { return x.L === L; })) return;
+    if (L.hideOthers) cur.layers.filter(function (x) { return !x.isBase; }).forEach(function (x) { hideLayer(x.L.id); });
+    var ent = mkLayer(L, false); cur.layers.push(ent); tick(); fire("layerStart", L.id, ent);
+  }
+  function hideLayer(id) {
+    if (!cur) return; var ent = cur.layers.find(function (x) { return x.L.id === id && !x.isBase; }); if (!ent) return;
+    ent.L.objects.forEach(function (o) { var e = cur.els[o.id]; if (e && e._media) try { e._media.pause(); } catch (_) {} delete cur.els[o.id]; });
+    ent.div.remove(); cur.layers.splice(cur.layers.indexOf(ent), 1);
+  }
+  function compare(a, op, b) {
+    if (typeof a === "boolean") b = truthy(b);
+    var na = parseFloat(a), nb = parseFloat(b), num = typeof a !== "boolean" && a !== "" && b !== "" && !isNaN(na) && !isNaN(nb) && isFinite(a) && isFinite(b);
+    if (num) { a = na; b = nb; } else if (typeof a !== "boolean") { a = String(a == null ? "" : a).toLowerCase(); b = String(b == null ? "" : b).toLowerCase(); }
+    switch (op) { case "==": return a === b; case "!=": return a !== b; case ">": return a > b; case "<": return a < b; case ">=": return a >= b; case "<=": return a <= b; case "contains": return String(a).indexOf(String(b)) >= 0; }
+    return false;
+  }
+  function condOK(t) {
+    return (t.conds || []).every(function (c) {
+      if (c.kind === "state") { var o = findObj(c.obj); var st = o ? stateOf(o) : ""; return c.op === "!=" ? st !== c.val : st === c.val; }
+      return compare(S.vars[c.v], c.op || "==", c.val);
+    });
+  }
+  var NEEDS = { click: 1, hoverIn: 1, hoverOut: 1, appear: 1, varChange: 1, key: 1, layerStart: 1 };
+  function fire(ev, src, lay) {
+    if (!cur || depth > 25) return; depth++;
+    var sl = cur.sl;
+    var trs = (sl.triggers || []).filter(function (t) { return t.event === ev && (!NEEDS[ev] || t.source === src); });
+    for (var i = 0; i < trs.length; i++) { if (!cur || cur.sl !== sl) break; if (condOK(trs[i])) run(trs[i], lay); }
+    depth--;
+  }
+  function run(t, lay) {
+    var v = t.value;
+    var vt = function (n) { var d = (P.variables || []).find(function (x) { return x.name === n; }); return d ? d.type : "text"; };
+    switch (t.action) {
+      case "jump": return jump(t.target);
+      case "showLayer": return showLayer(t.target);
+      case "hideLayer": return hideLayer(t.target === "__this" ? (lay && lay.L.id) : t.target);
+      case "state": return setState(t.target, v || "Normal");
+      case "setVar": return setVar(t.target, castVal(v, vt(t.target)));
+      case "addVar": return setVar(t.target, (parseFloat(S.vars[t.target]) || 0) + (parseFloat(v) || 0));
+      case "subVar": return setVar(t.target, (parseFloat(S.vars[t.target]) || 0) - (parseFloat(v) || 0));
+      case "toggleVar": return setVar(t.target, !truthy(S.vars[t.target]));
+      case "pause": cur.playing = false; return updatePlay();
+      case "resume": cur.playing = true; cur.last = performance.now(); return updatePlay();
+      case "url": try { window.open(v, "_blank", "noopener"); } catch (_) {} return;
+      case "submit": return submit();
+      case "playMedia": var e = cur.els[t.target]; if (e && e._media) e._media.play().catch(function () {}); return;
+      case "pauseMedia": var e2 = cur.els[t.target]; if (e2 && e2._media) e2._media.pause(); return;
+      case "move": var o = findObj(t.target), el = cur.els[t.target]; if (!o || !el) return;
+        var xy = String(v || "").split(/[,; ]+/).map(Number), p0 = S.pos[o.id] || { x: o.x, y: o.y }, p1 = { x: isNaN(xy[0]) ? p0.x : xy[0], y: isNaN(xy[1]) ? p0.y : xy[1] };
+        try { el.animate([{ left: p0.x + "px", top: p0.y + "px" }, { left: p1.x + "px", top: p1.y + "px" }], { duration: (+t.dur || 0.8) * 1000, easing: "cubic-bezier(.4,0,.2,1)" }); } catch (_) {}
+        S.pos[o.id] = p1; el.style.left = p1.x + "px"; el.style.top = p1.y + "px"; return;
+      case "speak": try { var u = new SpeechSynthesisUtterance(interpText(v || "", S.vars)); u.lang = set.lang || "fr-FR"; window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); } catch (_) {} return;
+      case "retryQuiz": list.forEach(function (x) { if (x.s.type === "quiz") { delete S.quiz[x.s.id]; delete S.answers[x.s.id]; } }); computeResults();
+        var fq = list.findIndex(function (x) { return x.s.type === "quiz"; }); return go(fq < 0 ? 0 : fq);
+      case "restart": resetAll(); computeResults(); return go(0);
+      case "exit": return exitCourse();
+    }
+  }
+  function submit() {
+    if (!cur) return; var sl = cur.sl; if (sl.type !== "quiz") return;
+    var r0 = S.quiz[sl.id]; if (r0 && r0.final) return;
+    var q = sl.quiz, a = ctx.answer(sl), r = evalQuestion(q, a);
+    if (!r.answered) return toast("Réponds à la question avant de valider.");
+    var used = (r0 ? r0.tries : 0) + 1, fin = r.correct || used >= (+q.attempts || 1);
+    S.quiz[sl.id] = { correct: r.correct, tries: used, final: fin };
+    computeResults(); refresh(); chrome();
+    showLayer(r.correct ? q.layerCorrect : (fin ? q.layerIncorrect : (q.layerTry || q.layerIncorrect)));
+    fire("submitted");
+  }
+  function doResult() {
+    var r = computeResults(); refresh(); var R = cur.sl.result || {};
+    showLayer(r.passed ? R.layerPass : R.layerFail); scormReport(r);
+  }
+  function exitCourse() {
+    if (API) try { API.LMSCommit(""); API.LMSFinish(""); } catch (_) {}
+    if (opts.onExit) return opts.onExit();
+    var ov = mk("div", "tp-cover"); var inner = mk("div", "tp-cover-in");
+    inner.appendChild(mk("h2", "", "Module terminé")); inner.appendChild(mk("p", "", "Tu peux fermer cette fenêtre."));
+    var b = mk("button", "tp-b tp-primary", "Revoir le module"); b.type = "button"; b.onclick = function () { ov.remove(); resetAll(); computeResults(); go(0); };
+    inner.appendChild(b); ov.appendChild(inner); tp.appendChild(ov);
+  }
+  function tick() {
+    if (!cur) return;
+    cur.layers.slice().forEach(function (ent) {
+      var t = ent.isBase ? cur.baseT : ent.t;
+      (ent.L.objects || []).forEach(function (o) {
+        var e = cur.els[o.id]; if (!e) return;
+        var st = +o.start || 0, du = (o.dur === null || o.dur === undefined || o.dur === "") ? Infinity : +o.dur;
+        var vis = t >= st && t < st + du;
+        if (vis === e._vis) return;
+        e._vis = vis;
+        if (vis) {
+          e.style.display = "";
+          if (o.animIn && ANIMS[o.animIn]) try { e._a.animate(ANIMS[o.animIn], { duration: (+o.animInDur || 0.6) * 1000, easing: "cubic-bezier(.2,.7,.2,1)" }); } catch (_) {}
+          if (o.autoplay && e._media) e._media.play().catch(function () {});
+          fire("appear", o.id, ent);
+        } else {
+          if (o.animOut && ANIMS[o.animOut]) {
+            try { var an = e._a.animate(ANIMS[o.animOut], { duration: (+o.animOutDur || 0.5) * 1000, direction: "reverse", easing: "ease-in" }); an.onfinish = function () { if (!e._vis) e.style.display = "none"; }; } catch (_) { e.style.display = "none"; }
+          } else e.style.display = "none";
+          if (e._media) try { e._media.pause(); } catch (_) {}
+        }
+      });
+    });
+  }
+  function onEnd() {
+    var me = cur, sl = cur.sl;
+    fire("timelineEnd");
+    if (cur === me && sl.advance === "auto" && sl.type === "normal" && !(sl.triggers || []).some(function (t) { return t.event === "timelineEnd" && t.action === "jump"; })) go(cur.idx + 1);
+  }
+  function step(now) {
+    if (!alive) return;
+    if (cur) {
+      var dt = Math.min(0.1, (now - cur.last) / 1000); cur.last = now;
+      if (cur.playing) {
+        var dur = +cur.sl.duration || 5, pb = cur.layers.some(function (l) { return !l.isBase && l.L.pauseBase; });
+        cur.layers.forEach(function (l) { if (!l.isBase) l.t += dt; });
+        if (!pb && cur.baseT < dur) { cur.baseT = Math.min(dur, cur.baseT + dt); }
+        tick();
+        if (cur && cur.baseT >= dur && !cur.ended) { cur.ended = true; onEnd(); }
+        seek();
+      }
+    }
+    raf = requestAnimationFrame(step);
+  }
+  function seek() { if (!cur) return; $(".tp-seek-fill").style.width = Math.min(100, cur.baseT / (+cur.sl.duration || 5) * 100) + "%"; }
+  function updatePlay() { var b = $(".tp-play"); if (!cur) return; b.textContent = cur.playing ? "❚❚" : "▶"; b.setAttribute("aria-label", cur.playing ? "Pause" : "Lecture"); }
+  function chrome() {
+    if (!cur) return; var sl = cur.sl, q = S.quiz[sl.id], fin = q && q.final;
+    $(".tp-count").textContent = (cur.idx + 1) + " / " + list.length;
+    $(".tp-prev").hidden = sl.navPrev === false || cur.idx === 0;
+    $(".tp-next").hidden = sl.navNext === false || cur.idx === list.length - 1 || (sl.type === "quiz" && !fin);
+    $(".tp-submit").hidden = sl.type !== "quiz" || !!fin;
+  }
+  var toastT = 0;
+  function toast(msg) { var t = $(".tp-toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 2600); }
+  $(".tp-prev").onclick = function () { jump("prev"); };
+  $(".tp-next").onclick = function () { jump("next"); };
+  $(".tp-submit").onclick = submit;
+  $(".tp-replay").onclick = function () { if (cur) go(cur.idx, "instant"); };
+  $(".tp-play").onclick = function () { if (!cur) return; cur.playing = !cur.playing; cur.last = performance.now(); updatePlay(); };
+  $(".tp-seek").onclick = function (e) { if (!cur) return; var r = this.getBoundingClientRect(), d = +cur.sl.duration || 5; cur.baseT = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * d; cur.ended = cur.baseT >= d; tick(); seek(); };
+  function onKey(e) {
+    if (!cur) return; var tg = e.target && e.target.tagName;
+    if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT") return;
+    if (e.key === "ArrowRight" && !$(".tp-next").hidden) jump("next");
+    else if (e.key === "ArrowLeft" && !$(".tp-prev").hidden) jump("prev");
+    var key = e.key === " " ? "space" : String(e.key).toLowerCase();
+    fire("key", key);
+  }
+  document.addEventListener("keydown", onKey);
+  raf = requestAnimationFrame(step);
+  var start = opts.startAt || 0;
+  if (opts.cover) {
+    var ov = mk("div", "tp-cover"), inner = mk("div", "tp-cover-in");
+    inner.appendChild(mk("h1", "", P.title || "Module"));
+    if (set.subtitle) inner.appendChild(mk("p", "", set.subtitle));
+    var b = mk("button", "tp-b tp-primary tp-big", "Démarrer"); b.type = "button";
+    b.onclick = function () { ov.remove(); go(start); fit(); };
+    inner.appendChild(b); ov.appendChild(inner); tp.appendChild(ov); renderDrawer();
+  } else go(start);
+  setTimeout(fit, 30);
+  return { destroy: function () { alive = false; cancelAnimationFrame(raf); document.removeEventListener("keydown", onKey); leave(); ro.disconnect(); root.innerHTML = ""; } };
+}
+G.Trame = { uid: uid, ANIMS: ANIMS, sty: sty, buildObj: buildObj, paintObj: paintObj, renderQuestion: renderQuestion, initAnswer: initAnswer, evalQuestion: evalQuestion, interpText: interpText, Player: Player };
+})(window);
+</script><script>var PROJECT={"version":1,"title":"Les bons réflexes de la sécurité numérique","settings":{"width":960,"height":540,"accent":"#0d6e6e","passScore":80,"showMenu":true,"freeNav":true,"showSeek":true,"subtitle":"Module de 10 minutes · scénario, interactions et évaluation","glossary":[{"term":"Hameçonnage","def":"Message frauduleux qui imite un organisme connu pour voler des identifiants ou de l'argent."},{"term":"Double authentification","def":"Connexion qui demande une seconde preuve, par exemple un code reçu sur le téléphone."},{"term":"Phrase de passe","def":"Mot de passe formé de plusieurs mots, long et facile à retenir."}],"resources":[{"label":"Cybermalveillance.gouv.fr","url":"https://www.cybermalveillance.gouv.fr"}],"lang":"fr-FR"},"variables":[{"name":"Prenom","type":"text","value":""},{"name":"CartesVues","type":"number","value":0},{"name":"Vu1","type":"bool","value":false},{"name":"Vu2","type":"bool","value":false},{"name":"Vu3","type":"bool","value":false}],"scenes":[{"id":"3arokq3d","name":"Découverte","slides":[{"id":"w4jh580f","title":"Bienvenue","type":"normal","bg":"#0f2f33","bgImage":"","duration":3,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"Présente l'objectif du module et invite l'apprenant à saisir son prénom.","layers":[{"id":"99yhkxf1","name":"Calque de base","objects":[{"id":"pbjwgffe","type":"ellipse","name":"Disque décor","x":600,"y":-140,"w":520,"h":520,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#14474d","stroke":"#0d6e6e","strokeW":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12},"animInDur":1},{"id":"cp61e4h8","type":"ellipse","name":"Pastille","x":770,"y":380,"w":130,"h":130,"rot":0,"start":0.6,"dur":null,"animIn":"bounce","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#f2b84b","stroke":"#0d6e6e","strokeW":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12}},{"id":"w6feijnk","type":"text","name":"Surtitre","x":70,"y":100,"w":500,"h":30,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"MODULE 1 · 10 MINUTES","style":{"color":"#f2b84b","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"ixrxexrd","type":"text","name":"Titre","x":70,"y":135,"w":580,"h":150,"rot":0,"start":0.2,"dur":null,"animIn":"fly-left","animOut":"none","states":{},"initialState":"Normal","text":"Les bons réflexes de la sécurité numérique","style":{"color":"#ffffff","fontSize":44,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true,"lineHeight":1.15}},{"id":"9osi9otm","type":"text","name":"Consigne prénom","x":70,"y":305,"w":400,"h":30,"rot":0,"start":0.8,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Comment t'appelles-tu ?","style":{"color":"#cfe3e1","fontSize":17,"fontFamily":"IBM Plex Sans","align":"left","valign":"top","padding":4}},{"id":"bhgj2we5","type":"input","name":"Champ prénom","x":70,"y":338,"w":300,"h":48,"rot":0,"start":0.8,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fontSize":18,"radius":8,"stroke":"#9aa6b0","strokeW":1,"fill":"#ffffff","color":"#172126","fontFamily":"IBM Plex Sans"},"varName":"Prenom","placeholder":"Ton prénom"},{"id":"g2e8c58q","type":"button","name":"Bouton Commencer","x":70,"y":420,"w":220,"h":56,"rot":0,"start":1,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"fill":"#ffd27a"},"Down":{"fill":"#e0a53a"}},"initialState":"Normal","text":"Commencer","style":{"fill":"#f2b84b","color":"#10343a","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}]}],"triggers":[{"id":"e6mj1v8o","event":"click","source":"g2e8c58q","action":"jump","target":"next","value":"","conds":[]}]},{"id":"rz9tq02g","title":"Trois réflexes","type":"normal","bg":"#f4f7f6","bgImage":"","duration":2,"advance":"user","transition":"fade","navPrev":true,"navNext":false,"notes":"Interaction d'exploration : l'apprenant doit ouvrir les trois cartes pour débloquer la suite.","layers":[{"id":"61dp23a5","name":"Calque de base","objects":[{"id":"ypmgmqr4","type":"text","name":"Titre","x":60,"y":36,"w":840,"h":50,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Bonjour %Prenom% ! Ouvre chaque carte.","style":{"color":"#10343a","fontSize":32,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"1dtme7eb","type":"text","name":"Compteur","x":60,"y":90,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Cartes explorées : %CartesVues% / 3","style":{"color":"#4b5a60","fontSize":17,"fontFamily":"IBM Plex Sans","align":"left","valign":"top","padding":4}},{"id":"o9j6ht2c","type":"rect","name":"Carte Mots de passe","x":60,"y":150,"w":260,"h":250,"rot":0,"start":0.2,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"stroke":"#0d6e6e","fill":"#eef7f5"},"Visited":{"fill":"#0d6e6e","color":"#ffffff","stroke":"#0d6e6e","text":"✓ Mots de passe"}},"initialState":"Normal","text":"Mots de passe","style":{"fill":"#ffffff","stroke":"#cfdcda","strokeW":2,"radius":18,"color":"#10343a","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"bold":true}},{"id":"2glmrw7z","type":"rect","name":"Carte Mises à jour","x":350,"y":150,"w":260,"h":250,"rot":0,"start":0.4,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"stroke":"#0d6e6e","fill":"#eef7f5"},"Visited":{"fill":"#0d6e6e","color":"#ffffff","stroke":"#0d6e6e","text":"✓ Mises à jour"}},"initialState":"Normal","text":"Mises à jour","style":{"fill":"#ffffff","stroke":"#cfdcda","strokeW":2,"radius":18,"color":"#10343a","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"bold":true}},{"id":"ejwql7g8","type":"rect","name":"Carte Hameçonnage","x":640,"y":150,"w":260,"h":250,"rot":0,"start":0.6000000000000001,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"stroke":"#0d6e6e","fill":"#eef7f5"},"Visited":{"fill":"#0d6e6e","color":"#ffffff","stroke":"#0d6e6e","text":"✓ Hameçonnage"}},"initialState":"Normal","text":"Hameçonnage","style":{"fill":"#ffffff","stroke":"#cfdcda","strokeW":2,"radius":18,"color":"#10343a","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"bold":true}},{"id":"j3uoci8k","type":"button","name":"Bouton Suivant","x":700,"y":450,"w":200,"h":54,"rot":0,"start":1,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"fill":"#13908f"},"Disabled":{"fill":"#b8c4c2","color":"#eef3f2"}},"initialState":"Disabled","text":"Suivant","style":{"fill":"#0d6e6e","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}]},{"id":"ku724rr2","name":"Mots de passe","objects":[{"id":"83mqabqx","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.5}},{"id":"xfmg7ynp","type":"rect","name":"Panneau","x":190,"y":100,"w":580,"h":340,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#0d6e6e","strokeW":0,"radius":20,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.4},{"id":"nlkm4ul4","type":"text","name":"Titre","x":230,"y":135,"w":500,"h":50,"rot":0,"start":0.2,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Mots de passe","style":{"color":"#0d6e6e","fontSize":30,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"7aurx1e1","type":"text","name":"Texte","x":230,"y":195,"w":500,"h":140,"rot":0,"start":0.4,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Utilise une phrase de passe longue et unique pour chaque compte, et active la double authentification dès que possible.","style":{"color":"#283a40","fontSize":20,"fontFamily":"IBM Plex Sans","align":"left","valign":"top","padding":4,"lineHeight":1.45}},{"id":"xahok9af","type":"button","name":"Bouton Fermer","x":530,"y":360,"w":200,"h":50,"rot":0,"start":0.6,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"fill":"#13908f"},"Down":{"fill":"#0a5555"}},"initialState":"Normal","text":"J'ai compris","style":{"fill":"#0d6e6e","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":false},{"id":"r6e41oa9","name":"Mises à jour","objects":[{"id":"g4duw42w","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.5}},{"id":"29ttxt9e","type":"rect","name":"Panneau","x":190,"y":100,"w":580,"h":340,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#0d6e6e","strokeW":0,"radius":20,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.4},{"id":"my6teywg","type":"text","name":"Titre","x":230,"y":135,"w":500,"h":50,"rot":0,"start":0.2,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Mises à jour","style":{"color":"#0d6e6e","fontSize":30,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"qgfh077e","type":"text","name":"Texte","x":230,"y":195,"w":500,"h":140,"rot":0,"start":0.4,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Installe rapidement les mises à jour du système et des applications : elles corrigent des failles déjà exploitées.","style":{"color":"#283a40","fontSize":20,"fontFamily":"IBM Plex Sans","align":"left","valign":"top","padding":4,"lineHeight":1.45}},{"id":"khryxvix","type":"button","name":"Bouton Fermer","x":530,"y":360,"w":200,"h":50,"rot":0,"start":0.6,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"fill":"#13908f"},"Down":{"fill":"#0a5555"}},"initialState":"Normal","text":"J'ai compris","style":{"fill":"#0d6e6e","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":false},{"id":"v3a7lh1o","name":"Hameçonnage","objects":[{"id":"kxmd8549","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.5}},{"id":"d08z2j0m","type":"rect","name":"Panneau","x":190,"y":100,"w":580,"h":340,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#0d6e6e","strokeW":0,"radius":20,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.4},{"id":"ycwr2nl6","type":"text","name":"Titre","x":230,"y":135,"w":500,"h":50,"rot":0,"start":0.2,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Hameçonnage","style":{"color":"#0d6e6e","fontSize":30,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"o3seoa6y","type":"text","name":"Texte","x":230,"y":195,"w":500,"h":140,"rot":0,"start":0.4,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Méfie-toi des messages urgents qui demandent de cliquer ou de payer. Vérifie l'expéditeur et passe par le site officiel.","style":{"color":"#283a40","fontSize":20,"fontFamily":"IBM Plex Sans","align":"left","valign":"top","padding":4,"lineHeight":1.45}},{"id":"xinrqxof","type":"button","name":"Bouton Fermer","x":530,"y":360,"w":200,"h":50,"rot":0,"start":0.6,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"fill":"#13908f"},"Down":{"fill":"#0a5555"}},"initialState":"Normal","text":"J'ai compris","style":{"fill":"#0d6e6e","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":false}],"triggers":[{"id":"gspyvb5s","event":"click","source":"o9j6ht2c","action":"addVar","target":"CartesVues","value":"1","conds":[{"v":"Vu1","op":"==","val":"false"}]},{"id":"1hz9tfcm","event":"click","source":"o9j6ht2c","action":"setVar","target":"Vu1","value":"true","conds":[]},{"id":"39cnf3lc","event":"click","source":"o9j6ht2c","action":"showLayer","target":"ku724rr2","value":"","conds":[]},{"id":"bx2qulvu","event":"click","source":"xahok9af","action":"hideLayer","target":"__this","value":"","conds":[]},{"id":"u64h7qnw","event":"click","source":"2glmrw7z","action":"addVar","target":"CartesVues","value":"1","conds":[{"v":"Vu2","op":"==","val":"false"}]},{"id":"tq3s49xo","event":"click","source":"2glmrw7z","action":"setVar","target":"Vu2","value":"true","conds":[]},{"id":"pkvjt43g","event":"click","source":"2glmrw7z","action":"showLayer","target":"r6e41oa9","value":"","conds":[]},{"id":"795g75qb","event":"click","source":"khryxvix","action":"hideLayer","target":"__this","value":"","conds":[]},{"id":"9fxmw9rh","event":"click","source":"ejwql7g8","action":"addVar","target":"CartesVues","value":"1","conds":[{"v":"Vu3","op":"==","val":"false"}]},{"id":"in0anx9o","event":"click","source":"ejwql7g8","action":"setVar","target":"Vu3","value":"true","conds":[]},{"id":"o3op7fj8","event":"click","source":"ejwql7g8","action":"showLayer","target":"v3a7lh1o","value":"","conds":[]},{"id":"1m8p5tuj","event":"click","source":"xinrqxof","action":"hideLayer","target":"__this","value":"","conds":[]},{"id":"bccfvlzc","event":"varChange","source":"CartesVues","action":"state","target":"j3uoci8k","value":"Normal","conds":[{"v":"CartesVues","op":">=","val":"3"}]},{"id":"kgcd3bho","event":"click","source":"j3uoci8k","action":"jump","target":"next","value":"","conds":[]}]}]},{"id":"dffhxyd8","name":"Évaluation","slides":[{"id":"ziw0vuxj","title":"Mot de passe solide","type":"quiz","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"qjryycwt","name":"Calque de base","objects":[{"id":"dw22z4lp","type":"text","name":"Repère","x":60,"y":18,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"QUESTION 1 SUR 5","style":{"color":"#0d6e6e","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"luxmqkxc","type":"question","name":"Question","x":60,"y":56,"w":840,"h":420,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{}}]},{"id":"sfi4q35p","name":"Correct","objects":[{"id":"6q1pi8gi","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"ylo7g7li","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#1e8a5a","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"z2pxkvbr","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Exact : la longueur fait la force.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"58mc57oz","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"m1gv9479","name":"Incorrect","objects":[{"id":"nlywa35y","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"sxuyibkq","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#c2410c","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"yau2baj4","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Ce n'est pas la bonne réponse.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"h7i5stt1","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"b8jee3lr","name":"Réessayer","objects":[{"id":"ouoowtxa","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"drhke4x5","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#a16207","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"ghugrq6t","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Pas tout à fait. Essaie encore.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"ouea3cxx","type":"button","name":"Bouton Réessayer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Réessayer","style":{"fill":"#a16207","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true}],"triggers":[{"id":"44lvrwzo","event":"click","source":"58mc57oz","action":"jump","target":"next","value":"","conds":[]},{"id":"dqjd9f0m","event":"click","source":"h7i5stt1","action":"jump","target":"next","value":"","conds":[]},{"id":"7yihlplc","event":"click","source":"ouea3cxx","action":"hideLayer","target":"__this","value":"","conds":[]}],"quiz":{"kind":"mc","prompt":"Quel mot de passe est le plus solide ?","points":10,"attempts":1,"choices":[{"text":"Azerty123"},{"text":"MonChat2024!"},{"text":"lampe-orange-vélo-marée-42","correct":true}],"accepted":"","pairs":[],"items":[],"graded":true,"layerCorrect":"sfi4q35p","layerIncorrect":"m1gv9479","layerTry":"b8jee3lr"}},{"id":"en49a1ff","title":"Logo de la banque","type":"quiz","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"3lv6vwzt","name":"Calque de base","objects":[{"id":"d7xvc09g","type":"text","name":"Repère","x":60,"y":18,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"QUESTION 2 SUR 5","style":{"color":"#0d6e6e","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"0syw735m","type":"question","name":"Question","x":60,"y":56,"w":840,"h":420,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{}}]},{"id":"mm4ff8eb","name":"Correct","objects":[{"id":"w5dcm2wo","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"f9jyxjcd","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#1e8a5a","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"o4f6mhgo","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Exact : un logo se copie en deux secondes.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"gutaj9b4","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"u0l1m1cf","name":"Incorrect","objects":[{"id":"e4n6s3qu","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"xaaq9cas","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#c2410c","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"ik7treei","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Ce n'est pas la bonne réponse.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"5rv13c0t","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"kmzlq89e","name":"Réessayer","objects":[{"id":"m7yqozl5","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"dyz03gj2","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#a16207","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"nznoaupm","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Pas tout à fait. Essaie encore.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"0cb5r3vi","type":"button","name":"Bouton Réessayer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Réessayer","style":{"fill":"#a16207","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true}],"triggers":[{"id":"u7nrgzk7","event":"click","source":"gutaj9b4","action":"jump","target":"next","value":"","conds":[]},{"id":"v1n7l2oq","event":"click","source":"5rv13c0t","action":"jump","target":"next","value":"","conds":[]},{"id":"jlm01fdm","event":"click","source":"0cb5r3vi","action":"hideLayer","target":"__this","value":"","conds":[]}],"quiz":{"kind":"tf","prompt":"Un e-mail qui affiche le logo de ta banque est forcément authentique.","points":10,"attempts":2,"choices":[{"text":"Vrai"},{"text":"Faux","correct":true}],"accepted":"","pairs":[],"items":[],"graded":true,"layerCorrect":"mm4ff8eb","layerIncorrect":"u0l1m1cf","layerTry":"kmzlq89e"}},{"id":"vr8zlosi","title":"Situations","type":"quiz","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"zijce3nn","name":"Calque de base","objects":[{"id":"k0pc6rtk","type":"text","name":"Repère","x":60,"y":18,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"QUESTION 3 SUR 5","style":{"color":"#0d6e6e","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"4afg7upn","type":"question","name":"Question","x":60,"y":56,"w":840,"h":420,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{}}]},{"id":"t223iyvf","name":"Correct","objects":[{"id":"roig8w67","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"c6sz33iq","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#1e8a5a","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"ygapuwmi","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Bonne réponse !","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"4nc53r55","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"aplldm7v","name":"Incorrect","objects":[{"id":"rqcxzkz1","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"aa7c35gx","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#c2410c","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"2vo6gipm","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Ce n'est pas la bonne réponse.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"gb7j6d84","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"z1h7b5a1","name":"Réessayer","objects":[{"id":"6jz2fo7p","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"4de78385","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#a16207","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"dti3h94z","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Pas tout à fait. Essaie encore.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"ydwfdrjr","type":"button","name":"Bouton Réessayer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Réessayer","style":{"fill":"#a16207","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true}],"triggers":[{"id":"rfbrmdo0","event":"click","source":"4nc53r55","action":"jump","target":"next","value":"","conds":[]},{"id":"bgfpwvp4","event":"click","source":"gb7j6d84","action":"jump","target":"next","value":"","conds":[]},{"id":"h21urhpu","event":"click","source":"ydwfdrjr","action":"hideLayer","target":"__this","value":"","conds":[]}],"quiz":{"kind":"dd","prompt":"Associe chaque situation au bon réflexe.","points":10,"attempts":1,"choices":[],"accepted":"","pairs":[{"item":"SMS « colis bloqué » avec un lien","target":"Hameçonnage"},{"item":"Alerte : nouvelle version disponible","target":"Mise à jour"},{"item":"Création d'un compte en ligne","target":"Mot de passe unique"}],"items":[],"graded":true,"layerCorrect":"t223iyvf","layerIncorrect":"aplldm7v","layerTry":"z1h7b5a1"}},{"id":"gob8ou1d","title":"E-mail suspect","type":"quiz","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"lv8mg2ev","name":"Calque de base","objects":[{"id":"uz7p6f5g","type":"text","name":"Repère","x":60,"y":18,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"QUESTION 4 SUR 5","style":{"color":"#0d6e6e","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"1ssdd049","type":"question","name":"Question","x":60,"y":56,"w":840,"h":420,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{}}]},{"id":"81j0slm8","name":"Correct","objects":[{"id":"jt5akl7p","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"efmqq4ab","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#1e8a5a","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"e921v0w2","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Bonne réponse !","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"1uppyerw","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"7pdf2fpo","name":"Incorrect","objects":[{"id":"7tqo998s","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"mdqqwfr0","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#c2410c","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"czomth2v","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Ce n'est pas la bonne réponse.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"th5ojeum","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"84npw7st","name":"Réessayer","objects":[{"id":"zgiau4y1","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"olb1k7we","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#a16207","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"o40p04kj","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Pas tout à fait. Essaie encore.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"dy5fvzv4","type":"button","name":"Bouton Réessayer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Réessayer","style":{"fill":"#a16207","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true}],"triggers":[{"id":"58ez3u5p","event":"click","source":"1uppyerw","action":"jump","target":"next","value":"","conds":[]},{"id":"dokg6ojy","event":"click","source":"th5ojeum","action":"jump","target":"next","value":"","conds":[]},{"id":"hyq0od1l","event":"click","source":"dy5fvzv4","action":"hideLayer","target":"__this","value":"","conds":[]}],"quiz":{"kind":"order","prompt":"Remets dans l'ordre la bonne réaction face à un e-mail suspect.","points":10,"attempts":1,"choices":[],"accepted":"","pairs":[],"items":["Ne pas cliquer sur le lien","Vérifier l'adresse de l'expéditeur","Signaler le message","Supprimer l'e-mail"],"graded":true,"layerCorrect":"81j0slm8","layerIncorrect":"7pdf2fpo","layerTry":"84npw7st"}},{"id":"ke5pg8fb","title":"Double authentification","type":"quiz","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"7eah0jyb","name":"Calque de base","objects":[{"id":"htcdn3qr","type":"text","name":"Repère","x":60,"y":18,"w":600,"h":30,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"QUESTION 5 SUR 5","style":{"color":"#0d6e6e","fontSize":15,"fontFamily":"Lexend","align":"left","valign":"top","padding":4,"bold":true}},{"id":"85veg61e","type":"question","name":"Question","x":60,"y":56,"w":840,"h":420,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{}}]},{"id":"ztt53hf4","name":"Correct","objects":[{"id":"h34np76z","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"m6eo2qdz","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#1e8a5a","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"50czztcr","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Bonne réponse !","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"znawoy9c","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"lki8u0uu","name":"Incorrect","objects":[{"id":"brl0mw7t","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"ln7xo8y6","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#c2410c","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"pb91wfeo","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Ce n'est pas la bonne réponse.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"p8w8hcoe","type":"button","name":"Bouton Continuer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Continuer","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true},{"id":"g2320kwq","name":"Réessayer","objects":[{"id":"b6037b58","type":"rect","name":"Voile","x":0,"y":0,"w":960,"h":540,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#0e2a2e","stroke":"#0d6e6e","strokeW":0,"radius":0,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"opacity":0.35}},{"id":"wi5xmtho","type":"rect","name":"Panneau","x":230,"y":150,"w":500,"h":240,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"","style":{"fill":"#ffffff","stroke":"#a16207","strokeW":3,"radius":18,"color":"#172126","fontSize":20,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"shadow":true},"animInDur":0.35},{"id":"0l20b91q","type":"text","name":"Message","x":260,"y":175,"w":440,"h":120,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Pas tout à fait. Essaie encore.","style":{"color":"#172126","fontSize":24,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"5mu38zgv","type":"button","name":"Bouton Réessayer","x":370,"y":312,"w":220,"h":52,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{"Hover":{"opacity":0.88},"Down":{"opacity":0.75}},"initialState":"Normal","text":"Réessayer","style":{"fill":"#a16207","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":true}],"triggers":[{"id":"khmansw9","event":"click","source":"znawoy9c","action":"jump","target":"next","value":"","conds":[]},{"id":"tej0g4ze","event":"click","source":"p8w8hcoe","action":"jump","target":"next","value":"","conds":[]},{"id":"1danvxix","event":"click","source":"5mu38zgv","action":"hideLayer","target":"__this","value":"","conds":[]}],"quiz":{"kind":"fill","prompt":"Complète : la double ________ ajoute une seconde preuve d'identité.","points":10,"attempts":1,"choices":[],"accepted":"authentification, authentication","pairs":[],"items":[],"graded":true,"layerCorrect":"ztt53hf4","layerIncorrect":"lki8u0uu","layerTry":"g2320kwq"}},{"id":"1mb13mw8","title":"Résultats","type":"result","bg":"#f4f7f6","bgImage":"","duration":1,"advance":"user","transition":"fade","navPrev":true,"navNext":true,"notes":"","layers":[{"id":"yxdm2vyr","name":"Calque de base","objects":[{"id":"ehsruf61","type":"text","name":"Titre","x":60,"y":50,"w":840,"h":60,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"Tes résultats","style":{"color":"#10343a","fontSize":38,"fontFamily":"Lexend","align":"center","valign":"top","padding":4,"bold":true}},{"id":"3pnva6vh","type":"ellipse","name":"Pastille score","x":400,"y":120,"w":160,"h":160,"rot":0,"start":0,"dur":null,"animIn":"zoom","animOut":"none","states":{},"initialState":"Normal","text":"%Results.ScorePercent% %","style":{"fill":"#0d6e6e","stroke":"#0d6e6e","strokeW":0,"color":"#ffffff","fontSize":38,"fontFamily":"Lexend","align":"center","valign":"middle","padding":12,"bold":true}},{"id":"tb079luj","type":"text","name":"Seuil","x":180,"y":290,"w":600,"h":34,"rot":0,"start":0,"dur":null,"animIn":"none","animOut":"none","states":{},"initialState":"Normal","text":"%Results.ScorePoints% / %Results.MaxPoints% points · score requis : %Results.PassPercent% %","style":{"color":"#4b5a60","fontSize":17,"fontFamily":"IBM Plex Sans","align":"center","valign":"top","padding":4}}]},{"id":"vlcdir8d","name":"Réussi","objects":[{"id":"nwxeypi4","type":"text","name":"Message","x":130,"y":345,"w":700,"h":60,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Bravo, tu as réussi l'évaluation !","style":{"color":"#1e8a5a","fontSize":22,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"kp8fhzxc","type":"button","name":"Bouton Terminer","x":360,"y":420,"w":240,"h":54,"rot":0,"start":0,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"opacity":0.88}},"initialState":"Normal","text":"Terminer","style":{"fill":"#1e8a5a","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":false},{"id":"ugpdtcg5","name":"Échoué","objects":[{"id":"1z4o7vvt","type":"text","name":"Message","x":130,"y":345,"w":700,"h":60,"rot":0,"start":0,"dur":null,"animIn":"fade","animOut":"none","states":{},"initialState":"Normal","text":"Tu n'as pas encore atteint le score requis.","style":{"color":"#c2410c","fontSize":22,"fontFamily":"Lexend","align":"center","valign":"middle","padding":4,"bold":true}},{"id":"2bfjicrl","type":"button","name":"Bouton Recommencer le quiz","x":360,"y":420,"w":240,"h":54,"rot":0,"start":0,"dur":null,"animIn":"fly-bottom","animOut":"none","states":{"Hover":{"opacity":0.88}},"initialState":"Normal","text":"Recommencer le quiz","style":{"fill":"#c2410c","color":"#ffffff","radius":28,"fontSize":19,"bold":true,"fontFamily":"Lexend","align":"center","valign":"middle","padding":8}}],"hideOthers":true,"pauseBase":false}],"triggers":[{"id":"xc14a9q8","event":"click","source":"kp8fhzxc","action":"exit","target":"next","value":"","conds":[]},{"id":"g99g6i5i","event":"click","source":"2bfjicrl","action":"retryQuiz","target":"next","value":"","conds":[]}],"result":{"layerPass":"vlcdir8d","layerFail":"ugpdtcg5"}}]}]};Trame.Player(document.getElementById("app"),PROJECT,{cover:true,scorm:false});</script></body></html>

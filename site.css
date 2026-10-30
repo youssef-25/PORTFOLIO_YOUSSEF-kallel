@@ -1,0 +1,177 @@
+/* Shared by every page: footer + motion. Page-specific styles stay inline in each page. */
+
+/* ---------- footer ---------- */
+.foot{position:relative;margin-top:24px;padding:0;background:var(--card);border-top:1px solid var(--line);color:var(--muted);font-size:15px;overflow:hidden}
+.foot::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--spark),var(--accent));background-size:200% 100%}
+.foot .wrap{display:block;padding-block:56px 28px;position:relative}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr) minmax(0,.9fr);gap:40px}
+.foot-brand .logo{font-size:28px;color:var(--ink)}
+.foot-brand p{margin:12px 0 22px;max-width:40ch;font-size:16px}
+.foot h2{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:6px 0 14px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.foot-col a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 2px no-repeat;transition:background-size .3s,color .2s;padding-bottom:2px}
+.foot-col a:hover{background-size:100% 2px;color:var(--accent)}
+.foot-col a[aria-current="page"]{color:var(--accent)}
+.foot-col svg{width:16px;height:16px;flex-shrink:0;color:var(--muted)}
+.foot-mark{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:.85;font-size:clamp(56px,13vw,170px);color:transparent;-webkit-text-stroke:1.5px var(--line);margin:48px 0 0;white-space:nowrap;user-select:none;pointer-events:none}
+.foot-mark span{-webkit-text-stroke:0;color:var(--accent)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;margin-top:8px;font-size:14px}
+.totop{font:600 13px var(--mono);background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:border-color .2s,transform .2s}
+.totop:hover{border-color:var(--accent);transform:translateY(-2px)}
+.totop svg{width:14px;height:14px}
+@media (max-width:900px){.foot-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot-brand{grid-column:1/-1}}
+@media (max-width:480px){.foot-top{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- interactive polish (always on, small) ---------- */
+.nav{transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.45)}
+.nav ul a:not(.lang){background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 2px no-repeat;padding-bottom:3px;transition:background-size .3s,color .2s}
+.nav ul a:not(.lang):hover{background-size:100% 2px}
+.app,.fv-col,.case,.step{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s}
+.app:hover,.fv-col:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 22px 40px -26px rgba(0,0,0,.5)}
+.case:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.step:hover{background:color-mix(in srgb,var(--accent) 6%,var(--card))}
+.gallery img,.shot img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.case:hover .gallery img,.app:hover .shot img{transform:scale(1.03)}
+.chip{transition:border-color .2s,color .2s}
+.chip:not(.todo):hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{position:relative;overflow:hidden}
+.btn.primary::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.btn.primary:hover::after{transform:translateX(120%)}
+
+/* ---------- motion (skipped entirely for reduced-motion users) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:vtOut .25s ease both}
+  ::view-transition-new(root){animation:vtIn .35s ease both}
+  @keyframes vtOut{to{opacity:0;transform:translateY(-8px)}}
+  @keyframes vtIn{from{opacity:0;transform:translateY(10px)}}
+
+  /* hero entrance */
+  .hero .wrap>div>*{animation:up .8s cubic-bezier(.2,.7,.2,1) backwards}
+  .hero .wrap>div>:nth-child(1){animation-delay:.05s}
+  .hero .wrap>div>:nth-child(2){animation-delay:.15s}
+  .hero .wrap>div>:nth-child(3){animation-delay:.3s}
+  .hero .wrap>div>:nth-child(4){animation-delay:.42s}
+  .hero .micro{animation:pop .9s cubic-bezier(.2,.7,.2,1) .5s backwards}
+  .hero .micro-tag{animation:bob 3.2s ease-in-out 1.5s infinite}
+  .hero h1 em::after{transform-origin:left;animation:grow .9s cubic-bezier(.6,0,.2,1) .7s backwards}
+  @keyframes up{from{opacity:0;transform:translateY(22px)}}
+  @keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}}
+  @keyframes grow{from{transform:scaleX(0)}}
+  @keyframes bob{50%{transform:translateY(-4px)}}
+
+  /* scroll reveal: site.js adds .rv, then .in when the element enters the viewport */
+  .rv:not(.in){opacity:0}
+  .rv.in{animation:up .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0ms)}
+
+  /* live timeline dot */
+  .timeline li.now::after{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--spark);animation:ping 2s cubic-bezier(0,0,.2,1) infinite}
+  @keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(2.4);opacity:0}}
+
+  /* ADDIE letters */
+  .step.in .letter{animation:flip .7s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--d,0ms) + .15s)}
+  @keyframes flip{from{opacity:0;transform:translateY(16px) rotate(-8deg)}}
+
+  .foot::before{animation:slide 8s linear infinite}
+  @keyframes slide{to{background-position:200% 0}}
+}
+
+/* two-card grid (academic projects) */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:720px){.duo{grid-template-columns:minmax(0,1fr)}}
+/* social post screenshots: show nearly the whole post instead of a 16:10 crop */
+.shot.post{aspect-ratio:1/1;background:#fff}
+.shot.post img{object-position:top center}
+
+/* carousel (social post visuals) */
+.shot.carousel{position:relative;aspect-ratio:6/5;background:#f4f4f2}
+.car-track{list-style:none;margin:0;padding:0;display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.car-track::-webkit-scrollbar{display:none}
+.car-track li{flex:0 0 100%;scroll-snap-align:start;height:100%}
+.car-track img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+.car-track:focus-visible{outline-offset:-3px}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(15,20,24,.72);color:#fff;cursor:pointer;opacity:.85;transition:opacity .2s,background .2s}
+.car-btn:hover{opacity:1;background:var(--accent)}
+.car-btn:disabled{opacity:0;pointer-events:none}
+.car-btn svg{width:18px;height:18px}
+.car-btn.prev{left:10px}.car-btn.next{right:10px}
+.car-count{position:absolute;right:10px;bottom:10px;font:600 12px var(--mono);background:rgba(15,20,24,.72);color:#fff;padding:3px 9px;border-radius:999px}
+.app:hover .shot.carousel img{transform:none}
+/* three cards fit on one row on wide screens */
+.duo{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.shot.logo{aspect-ratio:1/1;background:#fff}
+.shot.logo img{object-fit:contain}
+.shot.post,.shot.carousel{aspect-ratio:1/1}
+
+/* ---------- UX pass 1 ---------- */
+/* chips: body font so the mono face is reserved for eyebrows */
+.chip{font:600 12.5px var(--body);letter-spacing:0}
+.fv-tools{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+/* lighter footer signature */
+.foot-mark{font-size:clamp(40px,8vw,104px);margin-top:36px}
+/* Applications layout */
+.app.feature{grid-row:auto}
+.shot.banner{aspect-ratio:1898/770}
+@media (min-width:901px){.app.wide .shot{aspect-ratio:16/10;align-self:center;margin:20px 0 20px 20px;border-radius:12px;flex-basis:50%}}
+/* anchors land below the sticky nav */
+[id]{scroll-margin-top:90px}
+
+/* home: proof strip */
+section.block.proof{border-top:0;padding-top:8px}
+.stats{list-style:none;margin:0 0 72px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:20px;background:var(--card);overflow:hidden}
+.stats li{padding:22px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px;min-width:0}
+.stats li:last-child{border-right:0}
+.stats b{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,42px);line-height:1;color:var(--accent);letter-spacing:-.02em}
+.stats span{font-size:14.5px;color:var(--muted)}
+/* home: featured work */
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.fcard{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;min-width:0;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.fcard:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 22px 40px -26px rgba(0,0,0,.5)}
+.fcard-media{aspect-ratio:16/10;background:#141a1d;overflow:hidden}
+.fcard-media img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.fcard:hover .fcard-media img{transform:scale(1.04)}
+.fcard-type{display:flex;flex-direction:column;justify-content:center;padding:24px 28px;background:radial-gradient(120% 120% at 100% 0%,var(--accent-soft),transparent 60%),var(--paper);border-bottom:1px solid var(--line)}
+.fcard-big{font-family:var(--display);font-weight:800;font-size:88px;line-height:.9;color:var(--spark);letter-spacing:-.04em}
+.fcard-bigl{font-family:var(--display);font-weight:700;font-size:20px;margin-top:6px}
+.fcard-tools{font:600 12px var(--mono);color:var(--muted);margin-top:14px;letter-spacing:.04em}
+.fcard-b{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.fcard h3{font-size:22px;font-weight:800;line-height:1.15}
+.fcard p{color:var(--muted);font-size:15.5px}
+.fcard-go{margin-top:auto;padding-top:8px;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--accent)}
+.fcard-go svg{width:18px;height:18px;transition:transform .25s}
+.fcard:hover .fcard-go svg{transform:translateX(4px)}
+@media (max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats li:nth-child(2){border-right:0}.stats li:nth-child(-n+2){border-bottom:1px solid var(--line)}.feat{grid-template-columns:minmax(0,1fr)}}
+.apps{align-items:start}
+
+/* ---------- UX pass 2: Projects page ---------- */
+.jump{display:flex;flex-wrap:wrap;gap:10px;margin:-12px 0 8px}
+.jump a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px 8px 10px;background:var(--card);transition:border-color .2s,transform .2s}
+.jump a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.jump b{font:600 12px var(--mono);color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:3px 8px}
+#projets .fv{margin-top:64px}
+#projets .fv:first-of-type{margin-top:40px}
+
+/* ---------- mobile menu (added by site.js; without JS the scrolling link row stays) ---------- */
+.burger{display:none}
+@media (max-width:900px){
+  .has-burger .nav .wrap{flex-wrap:nowrap;justify-content:space-between;padding-block:12px}
+  .has-burger .burger{display:inline-flex;align-items:center;gap:8px;margin-left:auto;font:700 14px var(--body);color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+  .has-burger .burger:hover{border-color:var(--accent)}
+  .burger i{position:relative;width:16px;height:2px;background:currentColor;border-radius:2px;transition:background .2s}
+  .burger i::before,.burger i::after{content:"";position:absolute;left:0;width:16px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s}
+  .burger i::before{top:-5px}.burger i::after{top:5px}
+  .nav.open .burger i{background:transparent}
+  .nav.open .burger i::before{transform:translateY(5px) rotate(45deg)}
+  .nav.open .burger i::after{transform:translateY(-5px) rotate(-45deg)}
+  .has-burger .nav ul{position:absolute;left:0;right:0;top:100%;margin:0;width:auto;flex-direction:column;align-items:stretch;gap:0;padding:8px max(16px,env(safe-area-inset-left,0px)) 18px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 24px 40px -24px rgba(0,0,0,.6);overflow:visible;white-space:normal;font-size:18px;display:none}
+  .has-burger .nav.open ul{display:flex;animation:menuIn .25s cubic-bezier(.2,.7,.2,1)}
+  .has-burger .nav ul li{border-top:1px solid var(--line)}
+  .has-burger .nav ul li:first-child{border-top:0}
+  .has-burger .nav ul a{display:block;padding:14px 4px;background:none!important;color:var(--ink)}
+  .has-burger .nav ul a[aria-current="page"]{color:var(--accent);text-decoration:none}
+  .has-burger .nav ul .lang{display:inline-block;margin-top:12px;padding:6px 14px!important;font-size:14px}
+  .has-burger .nav ul li:last-child{border-top:0}
+  @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}}
+}
+@media (max-width:900px) and (prefers-reduced-motion:reduce){.has-burger .nav.open ul{animation:none}}
